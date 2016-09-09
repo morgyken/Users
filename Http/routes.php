@@ -31,10 +31,10 @@ Route::group(['prefix' => 'auth',
     Route::get('login', ['middleware' => 'auth.guest', 'as' => 'login', 'uses' => 'AuthController@getLogin']);
     Route::post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
     # Register
-    if (false) {
-        Route::get('register', ['middleware' => 'auth.guest', 'as' => 'register', 'uses' => 'AuthController@getRegister']);
-        Route::post('register', ['as' => 'register.post', 'uses' => 'AuthController@postRegister']);
-    }
+    /*
+      Route::get('register', ['middleware' => 'auth.guest', 'as' => 'register', 'uses' => 'AuthController@getRegister']);
+      Route::post('register', ['as' => 'register.post', 'uses' => 'AuthController@postRegister']);
+     */
     # Account Activation
     Route::get('activate/{userId}/{activationCode}', ['uses' => 'AuthController@getActivate', 'as' => 'activate']);
     # Reset password
