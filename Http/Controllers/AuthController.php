@@ -32,7 +32,7 @@ class AuthController extends BasePublicController {
     }
 
     public function getLogin() {
-        return view('users::public.login');
+        return view('users::login');
     }
 
     public function postLogin(LoginRequest $request) {

@@ -23,23 +23,25 @@ class UsersServiceProvider extends ServiceProvider {
      * @var bool
      */
     protected $defer = false;
+
     /**
      * @var string
      */
     protected $driver = 'Sentinel';
+
     /**
      * @var array
      */
     protected $providers = [
         'Sentinel' => SentinelServiceProvider::class,
-        //'Sentry' => \Cartalyst\Sentry\SentryServiceProvider::class
+            //'Sentry' => \Cartalyst\Sentry\SentryServiceProvider::class
     ];
 
     /**
      * @var array
      */
     protected $middleware = [
-        'User' => [
+        'Users' => [
             'auth.guest' => 'GuestMiddleware',
             'logged.in' => 'LoggedInMiddleware'
         ],

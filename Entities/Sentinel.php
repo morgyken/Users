@@ -17,9 +17,16 @@ use Cartalyst\Sentinel\Users\EloquentUser;
 use Illuminate\Support\Facades\Config;
 
 /**
- * Description of Sentinel
+ * Ignite\Users\Entities\Sentinel
  *
- * @author samuel
+ * @property-read mixed $gravatar
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Roles\EloquentRole[] $roles
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[] $persistences
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Activations\EloquentActivation[] $activations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Reminders\EloquentReminder[] $reminders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Throttling\EloquentThrottle[] $throttle
+ * @property mixed $permissions
+ * @mixin \Eloquent
  */
 class Sentinel extends EloquentUser implements UserInterface {
 
@@ -73,9 +80,11 @@ class Sentinel extends EloquentUser implements UserInterface {
         return (bool) Activation::completed($this);
     }
 
-    public function profile() {
-        return $this->hasOne(UserProfile::class, 'user_id');
-    }
+    /*
+      public function profile() {
+      return $this->hasOne(UserProfile::class, 'user_id');
+      }
+     */
 
     public function getGravatarAttribute() {
         return gravatar($this->email, 160);
