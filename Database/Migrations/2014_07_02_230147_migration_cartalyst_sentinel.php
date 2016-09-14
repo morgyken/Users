@@ -17,19 +17,17 @@
  * @copyright  (c) 2011-2016, Cartalyst LLC
  * @link       http://cartalyst.com
  */
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class MigrationCartalystSentinel extends Migration
-{
+class MigrationCartalystSentinel extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
+    public function up() {
         Schema::create('activations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
@@ -93,16 +91,15 @@ class MigrationCartalystSentinel extends Migration
 
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email');
+            $table->string('email')->unique();
+            $table->string('username')->unique();
             $table->string('password');
             $table->text('permissions')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamp('last_login')->nullable();
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
             $table->timestamps();
 
             $table->engine = 'InnoDB';
-            $table->unique('email');
         });
     }
 
@@ -111,8 +108,7 @@ class MigrationCartalystSentinel extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
         Schema::drop('activations');
         Schema::drop('persistences');
         Schema::drop('reminders');
@@ -121,4 +117,5 @@ class MigrationCartalystSentinel extends Migration
         Schema::drop('throttle');
         Schema::drop('users');
     }
+
 }

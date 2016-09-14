@@ -122,15 +122,16 @@ class UsersServiceProvider extends ServiceProvider {
     private function registerBindings() {
 
         $this->app->bind(
-                'Ignite\User\Repositories\UserRepository', "Ignite\\Users\\Repositories\\{$this->driver}UserRepository"
+                'Ignite\Users\Repositories\UserRepository', "Ignite\\Users\\Repositories\\{$this->driver}UserRepository"
         );
 
         $this->app->bind(
-                'Ignite\User\Repositories\RoleRepository', "Ignite\\Users\\Repositories\\{$this->driver}RoleRepository"
+                'Ignite\Users\Repositories\RoleRepository', "Ignite\\Users\\Repositories\\{$this->driver}RoleRepository"
         );
         $this->app->bind(
                 'Ignite\Core\Contracts\Authentication', "Ignite\\Users\\Repositories\\{$this->driver}Authentication"
         );
+        ;
     }
 
     private function registerMiddleware() {

@@ -12,8 +12,10 @@
 
 namespace Ignite\Users\Services;
 
+use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Ignite\Core\Contracts\Authentication;
-use Ignite\Core\Repositories\RoleRepository;
+use Ignite\Users\Events\UserHasRegistered;
+use Ignite\Users\Repositories\RoleRepository;
 
 /**
  * Description of UserRegistration
@@ -58,7 +60,8 @@ class UserRegistration {
         $this->assignUserToUsersGroup($user);
 
         event(new UserHasRegistered($user));
-
+        $activation = Activation::create($user);
+        Activation::complete($user, $activation->code);
         return $user;
     }
 

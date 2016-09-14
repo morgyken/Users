@@ -41,68 +41,56 @@ class AuthController extends BasePublicController {
             'password' => $request->password,
         ];
         $remember = (bool) $request->get('remember_me', false);
-
         $error = $this->auth->login($credentials, $remember);
         if (!$error) {
             flash()->success('Successfully logged in');
-
-            return redirect()->intended('/core');
+            return redirect()->intended();
         }
-
         flash()->error($error);
-
         return redirect()->back()->withInput();
     }
 
     public function getRegister() {
-        return view('user::public.register');
+        return view('users::register');
     }
 
     public function postRegister(RegisterRequest $request) {
         app(UserRegistration::class)->register($request->all());
-
-        flash()->success(trans('user::messages.account created check email for activation'));
-
-        return redirect()->route('register');
+        flash('Your account  was created. Please login');
+        return redirect()->route('public.login');
     }
 
     public function getLogout() {
         $this->auth->logout();
-
-        return redirect()->route('login');
+        return redirect()->route('public.login');
     }
 
     public function getActivate($userId, $code) {
         if ($this->auth->activate($userId, $code)) {
-            flash()->success(trans('user::messages.account activated you can now login'));
-
-            return redirect()->route('login');
+            flash()->success('Account activated you can now login');
+            return redirect()->route('public.login');
         }
-        flash()->error(trans('user::messages.there was an error with the activation'));
-
-        return redirect()->route('register');
+        flash()->error('There was an error with the activation');
+        return redirect()->route('public.register');
     }
 
     public function getReset() {
-        return view('user::public.reset.begin');
+        return view('users::reset.begin');
     }
 
     public function postReset(ResetRequest $request) {
         try {
             app(UserResetter::class)->startReset($request->all());
         } catch (UserNotFoundException $e) {
-            flash()->error(trans('user::messages.no user found'));
-
+            flash()->error('No user found');
             return redirect()->back()->withInput();
         }
-
-        flash()->success(trans('user::messages.check email to reset password'));
-
-        return redirect()->route('reset');
+        flash()->success('Check email to reset password');
+        return redirect()->route('public.reset');
     }
 
     public function getResetComplete() {
-        return view('user::public.reset.complete');
+        return view('users::reset.complete');
     }
 
     public function postResetComplete($userId, $code, ResetCompleteRequest $request) {
@@ -111,18 +99,14 @@ class AuthController extends BasePublicController {
                     array_merge($request->all(), ['userId' => $userId, 'code' => $code])
             );
         } catch (UserNotFoundException $e) {
-            flash()->error(trans('user::messages.user no longer exists'));
-
+            flash()->error('User no longer exists');
             return redirect()->back()->withInput();
         } catch (InvalidOrExpiredResetCode $e) {
-            flash()->error(trans('user::messages.invalid reset code'));
-
+            flash()->error('Invalid or expired reset code');
             return redirect()->back()->withInput();
         }
-
-        flash()->success(trans('user::messages.password reset'));
-
-        return redirect()->route('login');
+        flash()->success('Password reset');
+        return redirect()->route('public.login');
     }
 
 }

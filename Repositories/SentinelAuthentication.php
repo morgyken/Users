@@ -18,6 +18,8 @@ use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Ignite\Core\Contracts\Authentication;
+use Ignite\Users\Events\UserHasActivatedAccount;
+use Ignite\Users\Events\UserHasLoggedIn;
 use Illuminate\Support\Facades\Auth;
 
 /**
