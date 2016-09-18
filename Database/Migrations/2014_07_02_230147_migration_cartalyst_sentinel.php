@@ -97,6 +97,7 @@ class MigrationCartalystSentinel extends Migration {
             $table->text('permissions')->nullable();
             $table->boolean('active')->default(true);
             $table->timestamp('last_login')->nullable();
+            $table->rememberToken();
             $table->timestamps();
 
             $table->engine = 'InnoDB';

@@ -14,6 +14,7 @@ namespace Ignite\Users\Repositories;
 
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
+use Ignite\Users\Entities\UserProfile;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -65,22 +66,20 @@ class SentinelUserRepository implements UserRepository {
     public function createWithRoles($data, $roles, $activated = false) {
         $this->hashPassword($data);
         $user = $this->create((array) $data);
-
         if (!empty($roles)) {
             $user->roles()->attach($roles);
         }
-
         if ($activated) {
             $activation = Activation::create($user);
             Activation::complete($user, $activation->code);
         }
     }
 
-    public function createUserWithProfile($data, $role) {
-        if (!is_int($role)) {
-            $role = Sentinel::findRoleBySlug($role);
+    public function createUserWithProfile($data, $roler) {
+        if (!is_int($roler)) {
+            $role = Sentinel::findRoleBySlug($roler);
         } else {
-            $role = Sentinel::findRoleById($role);
+            $role = Sentinel::findRoleById($roler);
         }
         $filter = ['username', 'email', 'password'];
         $user = $this->user->create(array_only($data, $filter));

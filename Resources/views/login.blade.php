@@ -1,3 +1,6 @@
+<?php
+$clinic = get_clinics();
+?>
 @extends('layouts.account')
 
 @section('title')
@@ -15,7 +18,7 @@ Login | @parent
 
     {!! Form::open(['route' => 'public.login.post']) !!}
     <div class="form-group has-feedback {{ $errors->has('username') ? ' has-error' : '' }}">
-        <input type="username" class="form-control" autofocus
+        <input type="text" class="form-control" autofocus
                name="username" placeholder="Username" value="{{ old('username')}}">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
@@ -26,6 +29,11 @@ Login | @parent
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
     </div>
+    @if(!$clinic->isEmpty())
+    <div class="form-group has-feedback">
+        {!! Form::select('clinic',$clinic,null,['class'=>'form-control','required']) !!}
+    </div>
+    @endif
     <div class="row">
         <div class="col-xs-8">
             <div class="checkbox icheck">

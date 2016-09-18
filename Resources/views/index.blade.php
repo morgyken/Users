@@ -33,7 +33,7 @@
                         @foreach ($data['users'] as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->full_name}}</td>
+                            <td>{{ $user->profile->full_name}}</td>
                             <td>{{ $user->email}}</td>
                             <td>{{ $user->created_at}}</td>
                             <td>

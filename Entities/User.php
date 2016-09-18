@@ -18,6 +18,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read mixed $gravator
+ * @property-read \Ignite\Users\Entities\UserProfile $profile
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereId($value)
@@ -55,6 +56,10 @@ class User extends Authenticatable {
 
     public function getGravatorAttribute() {
         return gravatar($this->email);
+    }
+
+    public function profile() {
+        return $this->hasOne(UserProfile::class, 'user_id');
     }
 
 }

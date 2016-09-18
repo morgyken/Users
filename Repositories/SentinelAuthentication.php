@@ -93,6 +93,9 @@ class SentinelAuthentication implements Authentication {
         if (!Sentinel::check()) {
             return false;
         }
+        if (Sentinel::inRole('administrator')) {
+            return true;
+        }
 
         return Sentinel::hasAccess($permission);
     }

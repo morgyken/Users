@@ -3,7 +3,6 @@
 namespace Ignite\Users\Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class UsersDatabaseSeeder extends Seeder {
 
@@ -13,8 +12,8 @@ class UsersDatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        Model::unguard();
         $this->call(RolesTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
         // $this->call("OthersTableSeeder");
     }
 

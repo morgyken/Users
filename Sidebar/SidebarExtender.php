@@ -41,10 +41,11 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender {
     public function extendWith(Menu $menu) {
         $menu->group('Dashboard', function (Group $group) {
             $group->item('Users', function(Item $item) {
-                $item->weight(0);
+                $item->weight(70);
                 $item->icon('fa fa-user');
                 $item->item('View Users', function (Item $item) {
                     $item->icon('fa fa-user');
+                    $item->route('users.index');
                 });
             });
         });

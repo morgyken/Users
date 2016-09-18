@@ -12,7 +12,7 @@
 
 namespace Ignite\Users\Providers;
 
-use Ignite\Events\Handlers\UserLoggedInListener;
+use Ignite\Users\Events\Handlers\UserLoggedInListener;
 use Ignite\Users\Events\Handlers\SendRegistrationConfirmationEmail;
 use Ignite\Users\Events\Handlers\SendResetCodeEmail;
 use Ignite\Users\Events\RoleWasUpdated;

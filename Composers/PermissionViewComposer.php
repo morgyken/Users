@@ -12,6 +12,8 @@
 
 namespace Ignite\Users\Composers;
 
+use Ignite\Users\Foundation\PermissionManager;
+
 /**
  * Description of PermissionViewComposer
  *

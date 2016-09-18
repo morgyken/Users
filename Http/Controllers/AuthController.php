@@ -35,6 +35,12 @@ class AuthController extends BasePublicController {
         return view('users::login');
     }
 
+    private function default_clinic(LoginRequest $request) {
+        if ($request->has('clinic')) {
+            $request->session()->put('clinic', $request->clinic);
+        }
+    }
+
     public function postLogin(LoginRequest $request) {
         $credentials = [
             'username' => $request->username,
@@ -43,6 +49,7 @@ class AuthController extends BasePublicController {
         $remember = (bool) $request->get('remember_me', false);
         $error = $this->auth->login($credentials, $remember);
         if (!$error) {
+            $this->default_clinic($request);
             flash()->success('Successfully logged in');
             return redirect()->intended();
         }

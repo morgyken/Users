@@ -10,7 +10,7 @@
  * =============================================================================
  */
 
-namespace Ignite\Events\Handlers;
+namespace Ignite\Users\Events\Handlers;
 
 use Ignite\Users\Events\UserHasLoggedIn;
 use Illuminate\Support\Facades\Auth;

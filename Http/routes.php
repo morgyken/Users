@@ -17,7 +17,7 @@ Route::group(['prefix' => 'users',
     'namespace' => $namespace,
     'as' => 'users.'], function () {
     Route::get('/', ['as' => 'index', 'uses' => 'UsersController@index']);
-    Route::get('create/user', ['as' => 'create', 'uses' => 'UsersController@create']);
+    Route::get('create/user', ['as' => 'create', 'uses' => 'UsersController@create_users']);
     Route::post('create/users', ['as' => 'store', 'uses' => 'UsersController@store']);
     Route::get('manage/{users}/edit', ['as' => 'edit', 'uses' => 'UsersController@edit']);
     Route::put('manage/{users}/edit', ['as' => 'update', 'uses' => 'UsersController@update']);
@@ -30,6 +30,10 @@ Route::group(['prefix' => 'users',
     Route::get('roles/{roles}/edit', ['as' => 'role.edit', 'uses' => 'RolesController@edit']);
     Route::put('roles/{roles}/edit', ['as' => 'role.update', 'uses' => 'RolesController@update']);
     Route::delete('roles/{roles}', ['as' => 'role.destroy', 'uses' => 'RolesController@destroy']);
+
+    Route::match(['get', 'post'], 'user_groups', ['uses' => 'RolesController@user_groups', 'as' => 'user_groups']);
+    Route::get('permissions/{group}/edit', ['as' => 'permissions', 'uses' => 'RolesController@edit']);
+    Route::post('permissions/{group}/update', ['as' => 'permissions.update', 'uses' => 'RolesController@update']);
 });
 //front -end routes
 Route::group(['prefix' => 'auth',
