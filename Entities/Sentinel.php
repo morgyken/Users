@@ -26,9 +26,11 @@ use Illuminate\Support\Facades\Config;
  * @property string $permissions
  * @property boolean $active
  * @property string $last_login
+ * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read mixed $gravatar
+ * @property-read \Ignite\Users\Entities\UserProfile $profile
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Roles\EloquentRole[] $roles
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[] $persistences
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Activations\EloquentActivation[] $activations
@@ -41,6 +43,7 @@ use Illuminate\Support\Facades\Config;
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel wherePermissions($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereActive($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereLastLogin($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -120,6 +123,10 @@ class Sentinel extends EloquentUser implements UserInterface {
 
         #i: No relation found, return the call to parent (Eloquent) to handle it.
         return parent::__call($method, $parameters);
+    }
+
+    public function profile() {
+        return $this->hasOne(UserProfile::class, 'user_id');
     }
 
 }

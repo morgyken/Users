@@ -10,9 +10,8 @@
                         <div class="col-md-8">
                             <h4 class="pull-left">{{ ucfirst($subPermissionTitle) }}</h4>
                             <p class="pull-right" style="margin-top: 10px;">
-                                <a href="" class="jsSelectAllInGroup">{{ trans('user::roles.select all')}}</a> |
-                                <a href="" class="jsDeselectAllInGroup">{{ trans('user::roles.deselect all')}}</a> |
-                                <a href="" class="jsSwapAllInGroup">{{ trans('user::roles.swap')}}</a>
+                                <a href="" class="jsSelectAllInGroup">Allow all</a> |
+                                <a href="" class="jsDeselectAllInGroup">Deny all</a>
                             </p>
                         </div>
                         <div class="clearfix"></div>
@@ -35,25 +34,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        $('.jsSelectAllInGroup').on('click', function (event) {
-            event.preventDefault();
-            $(this).closest('.permissionGroup').find('input[type=checkbox]').each(function (index, value) {
-                $(value).iCheck('check');
-            });
-        });
-        $('.jsDeselectAllInGroup').on('click', function (event) {
-            event.preventDefault();
-            $(this).closest('.permissionGroup').find('input[type=checkbox]').each(function (index, value) {
-                $(value).iCheck('uncheck');
-            });
-        });
-        $('.jsSwapAllInGroup').on('click', function (event) {
-            event.preventDefault();
-            $(this).closest('.permissionGroup').find('input[type=checkbox]').each(function (index, value) {
-                $(value).iCheck('toggle');
-            });
-        });
-    });
-</script>
+<script src="{{Module::asset('users:js/role.min.js')}}"></script>

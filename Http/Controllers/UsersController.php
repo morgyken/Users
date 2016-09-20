@@ -13,13 +13,13 @@
 namespace Ignite\Users\Http\Controllers;
 
 use Ignite\Core\Contracts\Authentication;
-use Ignite\Core\Http\Controllers\AdminBaseController;
 use Ignite\Users\Entities\User;
 use Ignite\Users\Foundation\PermissionManager;
+use Ignite\Users\Http\Requests\UpdateUserRequest;
 use Ignite\Users\Repositories\RoleRepository;
 use Ignite\Users\Repositories\UserRepository;
 
-class UsersController extends AdminBaseController {
+class UsersController extends UserBaseController {
 
     /**
      * @var UserRepository
@@ -35,7 +35,6 @@ class UsersController extends AdminBaseController {
      * @var Authentication
      */
     private $auth;
-    protected $data = [];
 
     /**
      * @param PermissionManager $permissions
@@ -54,6 +53,30 @@ class UsersController extends AdminBaseController {
     public function index() {
         $this->data['users'] = User::all();
         return view('users::index', ['data' => $this->data]);
+    }
+
+    public function edit($id) {
+        if (!$user = $this->user->find($id)) {
+            flash()->error('User not found');
+            return redirect()->route('users.index');
+        }
+        $roles = $this->role->all();
+        $currentUser = $this->auth->check();
+        return view('users::edit', compact('user', 'roles', 'currentUser'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  int               $id
+     * @param  UpdateUserRequest $request
+     * @return Response
+     */
+    public function update($id, UpdateUserRequest $request) {
+        $data = $this->mergeRequestWithPermissions($request);
+        $this->user->updateAndSyncRoles($id, $data, $request->roles);
+        flash('User updated');
+        return redirect()->route('users.index');
     }
 
     /**

@@ -12,20 +12,20 @@
 
 return [
     'user.users' => [
-        'index',
+        'view',
         'create',
-        'store',
+        'save',
         'edit',
         'update',
-        'destroy',
+        'delete',
         'sendResetPassword',
     ],
     'user.roles' => [
-        'index',
+        'view',
         'create',
-        'store',
+        'save',
         'edit',
         'update',
-        'destroy',
+        'delete',
     ],
 ];

@@ -1,0 +1,7 @@
+url: https://bitbucket.org/collabmed/users.git
+versions:
+    "1.0.0":
+        added:
+            - Initial release
+
+

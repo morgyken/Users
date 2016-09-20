@@ -19,10 +19,10 @@ Route::group(['prefix' => 'users',
     Route::get('/', ['as' => 'index', 'uses' => 'UsersController@index']);
     Route::get('create/user', ['as' => 'create', 'uses' => 'UsersController@create_users']);
     Route::post('create/users', ['as' => 'store', 'uses' => 'UsersController@store']);
-    Route::get('manage/{users}/edit', ['as' => 'edit', 'uses' => 'UsersController@edit']);
-    Route::put('manage/{users}/edit', ['as' => 'update', 'uses' => 'UsersController@update']);
-    Route::get('manage/{users}/sendResetPassword', ['as' => 'sendResetPassword', 'uses' => 'UsersController@sendResetPassword']);
-    Route::delete('manage/{users}/purge', ['as' => 'destroy', 'uses' => 'UsersController@destroy']);
+    Route::get('manage/{user}/edit', ['as' => 'edit', 'uses' => 'UsersController@edit']);
+    Route::put('manage/{user}/edit', ['as' => 'update', 'uses' => 'UsersController@update']);
+    Route::get('manage/{user}/sendResetPassword', ['as' => 'sendResetPassword', 'uses' => 'UsersController@sendResetPassword']);
+    Route::delete('manage/{user}/purge', ['as' => 'destroy', 'uses' => 'UsersController@destroy']);
 
     Route::get('roles', ['as' => 'role.index', 'uses' => 'RolesController@index']);
     Route::get('create/role', ['as' => 'role.create', 'uses' => 'RolesController@create']);

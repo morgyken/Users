@@ -15,6 +15,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string $permissions
  * @property boolean $active
  * @property string $last_login
+ * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read mixed $gravator
@@ -28,6 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User wherePermissions($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereActive($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereLastLogin($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereUpdatedAt($value)
  * @mixin \Eloquent

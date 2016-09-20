@@ -15,6 +15,9 @@ namespace Ignite\Users\Repositories;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Ignite\Users\Entities\UserProfile;
+use Ignite\Users\Events\UserHasRegistered;
+use Ignite\Users\Events\UserWasUpdated;
+use Ignite\Users\Exceptions\UserNotFoundException;
 use Illuminate\Support\Facades\Hash;
 
 /**
@@ -130,7 +133,6 @@ class SentinelUserRepository implements UserRepository {
      */
     public function update($user, $data) {
         $user = $user->update($data);
-
         event(new UserWasUpdated($user));
 
         return $user;

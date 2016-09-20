@@ -1,8 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
-@section('content-header')
-<h1>Users</h1>
-@stop
+@section('content_title','Users')
+@section('content_description','View system users')
 
 @section('content')
 <div class="row">
