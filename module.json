@@ -18,5 +18,8 @@
     "files": [
         "start.php",
         "composers.php"
-    ]
+    ],
+    "version": "v1.0.0",
+    "author": "Samuel Okoth",
+    "email": "sodhiambo@collabmed.com"
 }

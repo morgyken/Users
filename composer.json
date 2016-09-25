@@ -1,6 +1,18 @@
 {
-    "name": "nwidart/users",
+    "name": "collabmed/users",
     "description": "The user module is responsible for managing users and permissions.",
+    "license": "proprietary",
+    "type": "asgard-module",
+    "homepage": "http://www.collabmed.com",
+    "authors": {
+        "name": "Samuel Odhiambo Okoth",
+        "email": "sodhiambo@collabmed.com",
+        "role": "developer"
+    },
+    "require": {
+        "php": ">=5.6.4",
+        "composer/installers": "~1.0"
+    },
     "authors": [
         {
             "name": "Samuel Dervis",
@@ -11,5 +23,8 @@
         "psr-4": {
             "Modules\\Users\\": ""
         }
+    },
+    "extra": {
+        "installer-name": "Users"
     }
 }
