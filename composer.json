@@ -2,7 +2,7 @@
     "name": "collabmed/users",
     "description": "The user module is responsible for managing users and permissions.",
     "license": "proprietary",
-    "type": "asgard-module",
+    "type": "dervis-module",
     "homepage": "http://www.collabmed.com",
     "authors": {
         "name": "Samuel Odhiambo Okoth",
@@ -21,7 +21,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Modules\\Users\\": ""
+            "Ignite\\Users\\": ""
         }
     },
     "extra": {
