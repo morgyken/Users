@@ -2,6 +2,7 @@
     "name": "collabmed/users-module",
     "description": "The user module is responsible for managing users and permissions.",
     "license": "proprietary",
+    "keywords": ["inventory", "collabmed", "samuel", "dervis", "users"],
     "type": "asgard-module",
     "homepage": "http://www.collabmed.com",
     "authors": [
@@ -13,7 +14,8 @@
     ],
     "require": {
         "php": ">=5.6.4",
-        "composer/installers": "~1.0"
+        "composer/installers": "~1.0",
+        "collabmed/core-module": "dev-master"
     },
     "authors": [
         {
