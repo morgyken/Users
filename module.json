@@ -7,7 +7,8 @@
     "order": 1,
     "providers": [
         "Ignite\\Users\\Providers\\UsersServiceProvider",
-        "Ignite\\Users\\Providers\\EventServiceProvider"
+        "Ignite\\Users\\Providers\\EventServiceProvider",
+        "Ignite\\Users\\Providers\\RouteServiceProvider"
     ],
     "aliases": {
         "Sentinel": "Cartalyst\\Sentinel\\Laravel\\Facades\\Sentinel",
@@ -16,7 +17,7 @@
         "Reminder": "Cartalyst\\Sentinel\\Laravel\\Facades\\Reminder"
     },
     "files": [
-        "start.php",
+        "helpers.php",
         "composers.php"
     ],
     "version": "v1.0.0",

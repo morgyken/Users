@@ -9,3 +9,31 @@
  *
  * =============================================================================
  */
+
+use Ignite\Users\Entities\Sentinel;
+use Ignite\Users\Repositories\RoleRepository;
+
+/**
+ * Get users in specified roles
+ * @param $roles
+ * @return \Illuminate\Database\Eloquent\Collection|static[]
+ */
+function users_in($roles) {
+    return Sentinel::whereHas('roles', function ($query) use ($roles) {
+                if (is_array($roles)) {
+                    $query->whereIn('id', $roles);
+                } else {
+                    $query->where('id', $roles);
+                }
+            })->with('profile')->get();
+}
+
+/**
+ * Get all user roles
+ * @return mixed
+ */
+function all_roles() {
+    return app(RoleRepository::class)->all()->reject(function ($name) {
+                return $name->slug == 'sudo';
+            })->pluck('name', 'id');
+}
