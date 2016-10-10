@@ -34,4 +34,4 @@
         </div>
     </div>
 </div>
-<script src="{{Module::asset('users:js/role.min.js')}}"></script>
+<script src="{{m_asset('users:js/role.min.js')}}"></script>
