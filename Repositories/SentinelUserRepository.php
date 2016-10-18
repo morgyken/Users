@@ -86,7 +86,8 @@ class SentinelUserRepository implements UserRepository {
         }
         $filter = ['username', 'email', 'password'];
         $user = $this->user->create(array_only($data, $filter));
-        $role->users()->attach($user);
+        if (!empty($role))
+            $role->users()->attach($user);
         $pro = array_except($data, $filter);
         $pro['user_id'] = $user->id;
         UserProfile::create($pro);
