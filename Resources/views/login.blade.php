@@ -10,6 +10,7 @@ Login | @parent
 @section('content')
 <div class="login-logo">
     <a href="{{ url('/') }}">{{ config('practice.name') }}</a>
+    <img src="{{m_asset('core:img/logo.png')}}" width="360x" />
 </div>
 <!-- /.login-logo -->
 <div class="login-box-body">
