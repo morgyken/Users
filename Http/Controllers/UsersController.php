@@ -97,7 +97,7 @@ class UsersController extends UserBaseController {
                     return $value->slug === 'sudo';
                 })->pluck('name', 'id');
         $this->data['users'] = SetupFunctions::getSystemUsers();
-        return view('settings::users')->with('data', $this->data);
+        return view('settings::users', ['data' => $this->data]);
     }
 
     public function user_groups(Request $request) {
@@ -107,7 +107,7 @@ class UsersController extends UserBaseController {
         $this->data['user_groups'] = UserGroup::all()->reject(function ($value) {
             return $value->name === 'sudo';
         });
-        return view('settings::user_groups')->with('data', $this->data);
+        return view('settings::user_groups', ['data' => $this->data]);
     }
 
     /**
