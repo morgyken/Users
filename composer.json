@@ -18,12 +18,6 @@
         "cartalyst/sentinel": "2.0.*",
         "collabmed/core-module": "1.0.*"
     },
-    "authors": [
-        {
-            "name": "Samuel Dervis",
-            "email": "samueldervis@gmail.com"
-        }
-    ],
     "autoload": {
         "psr-4": {
             "Ignite\\Users\\": ""
