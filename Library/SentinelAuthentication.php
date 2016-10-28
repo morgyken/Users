@@ -10,7 +10,7 @@
  * =============================================================================
  */
 
-namespace Ignite\Users\Repositories;
+namespace Ignite\Users\Library;
 
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
@@ -27,8 +27,7 @@ use Illuminate\Support\Facades\Auth;
  *
  * @author Samuel Dervis <samueldervis@gmail.com>
  */
-class SentinelAuthentication implements Authentication
-{
+class SentinelAuthentication implements Authentication {
 
     /**
      * Authenticate a user
@@ -37,8 +36,7 @@ class SentinelAuthentication implements Authentication
      * @param  bool $remember Remember the user
      * @return mixed
      */
-    public function login(array $credentials, $remember = false)
-    {
+    public function login(array $credentials, $remember = false) {
         try {
             if (Sentinel::authenticate($credentials, $remember)) {
                 event(new UserHasLoggedIn(Sentinel::getUser()));
@@ -53,24 +51,20 @@ class SentinelAuthentication implements Authentication
         }
     }
 
-    public function register(array $user)
-    {
-        return Sentinel::getUserRepository()->create((array)$user);
+    public function register(array $user) {
+        return Sentinel::getUserRepository()->create((array) $user);
     }
 
-    public function assignRole($user, $role)
-    {
+    public function assignRole($user, $role) {
         return $role->users()->attach($user);
     }
 
-    public function logout()
-    {
+    public function logout() {
         Auth::logout();
         return Sentinel::logout();
     }
 
-    public function activate($userId, $code)
-    {
+    public function activate($userId, $code) {
         $user = Sentinel::findById($userId);
 
         $success = Activation::complete($user, $code);
@@ -81,25 +75,21 @@ class SentinelAuthentication implements Authentication
         return $success;
     }
 
-    public function createActivation($user)
-    {
+    public function createActivation($user) {
         return Activation::create($user)->code;
     }
 
-    public function createReminderCode($user)
-    {
+    public function createReminderCode($user) {
         $reminder = Reminder::exists($user) ?: Reminder::create($user);
 
         return $reminder->code;
     }
 
-    public function completeResetPassword($user, $code, $password)
-    {
+    public function completeResetPassword($user, $code, $password) {
         return Reminder::complete($user, $code, $password);
     }
 
-    public function hasAccess($permission)
-    {
+    public function hasAccess($permission) {
         if (!Sentinel::check()) {
             return false;
         }
@@ -110,16 +100,14 @@ class SentinelAuthentication implements Authentication
         return Sentinel::hasAccess($permission);
     }
 
-    public function check()
-    {
+    public function check() {
         return Sentinel::check();
     }
 
     /**
      * Get user id
      */
-    public function id()
-    {
+    public function id() {
         if (!$user = $this->check()) {
             return;
         }
@@ -130,8 +118,7 @@ class SentinelAuthentication implements Authentication
     /**
      * Make sure only sudo can access some resources
      */
-    public function isSudo()
-    {
+    public function isSudo() {
         if (!Sentinel::check()) {
             return false;
         }
@@ -140,4 +127,5 @@ class SentinelAuthentication implements Authentication
         }
         return false;
     }
+
 }

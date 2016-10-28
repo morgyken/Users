@@ -10,7 +10,7 @@
  * =============================================================================
  */
 
-namespace Ignite\Users\Repositories;
+namespace Ignite\Users\Library;
 
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -18,6 +18,7 @@ use Ignite\Users\Entities\UserProfile;
 use Ignite\Users\Events\UserHasRegistered;
 use Ignite\Users\Events\UserWasUpdated;
 use Ignite\Users\Exceptions\UserNotFoundException;
+use Ignite\Users\Repositories\UserRepository;
 use Illuminate\Support\Facades\Hash;
 
 /**

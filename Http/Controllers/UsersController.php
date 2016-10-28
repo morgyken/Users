@@ -15,9 +15,12 @@ namespace Ignite\Users\Http\Controllers;
 use Ignite\Core\Contracts\Authentication;
 use Ignite\Users\Entities\User;
 use Ignite\Users\Foundation\PermissionManager;
+use Ignite\Users\Http\Requests\CreateUserRequest;
 use Ignite\Users\Http\Requests\UpdateUserRequest;
+use Ignite\Users\Repositories\MyUsers;
 use Ignite\Users\Repositories\RoleRepository;
 use Ignite\Users\Repositories\UserRepository;
+use Illuminate\Http\Request;
 
 class UsersController extends UserBaseController {
 
@@ -37,17 +40,24 @@ class UsersController extends UserBaseController {
     private $auth;
 
     /**
-     * @param PermissionManager $permissions
-     * @param UserRepository    $user
-     * @param RoleRepository    $role
-     * @param Authentication    $auth
+     * @var MyUsers
      */
-    public function __construct(PermissionManager $permissions, UserRepository $user, RoleRepository $role, Authentication $auth) {
+    private $my_users;
+
+    /**
+     * @param PermissionManager $permissions
+     * @param UserRepository $user
+     * @param RoleRepository $role
+     * @param Authentication $auth
+     * @param MyUsers $my
+     */
+    public function __construct(PermissionManager $permissions, UserRepository $user, RoleRepository $role, Authentication $auth, MyUsers $my) {
         parent::__construct();
         $this->permissions = $permissions;
         $this->user = $user;
         $this->role = $role;
         $this->auth = $auth;
+        $this->my_users = $my;
     }
 
     public function index() {
@@ -87,8 +97,7 @@ class UsersController extends UserBaseController {
      */
     public function users(RoleRepository $roles, UserRepository $user, Request $request) {
         if ($request->isMethod('post')) {
-            $this->validate($request, Validation::validate_user());
-            if (SetupFunctions::add_system_user($request, $user)) {
+            if ($this->my_users->add_system_user($request, $user)) {
                 flash('User added');
                 return redirect()->route('settings.users');
             }
@@ -96,7 +105,7 @@ class UsersController extends UserBaseController {
         $this->data['roles'] = $roles->all()->reject(function ($value) {
                     return $value->slug === 'sudo';
                 })->pluck('name', 'id');
-        $this->data['users'] = SetupFunctions::getSystemUsers();
+        $this->data['users'] = $this->my_users->getSystemUsers();
         return view('settings::users', ['data' => $this->data]);
     }
 
@@ -119,6 +128,19 @@ class UsersController extends UserBaseController {
         $roles = $this->role->all();
 
         return view('users::new_user', compact('roles'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  CreateUserRequest $request
+     * @return Response
+     */
+    public function store(CreateUserRequest $request) {
+        $data = $this->mergeRequestWithPermissions($request);
+        $this->user->createWithRoles($data, $request->roles, true);
+        flash('User created');
+        return redirect()->route('users.index');
     }
 
 }

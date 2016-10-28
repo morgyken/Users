@@ -1,3 +1,4 @@
+<?php extract($data); ?>
 @extends('layouts.app')
 
 @section('content_title','Users')
@@ -23,16 +24,18 @@
                         <tr>
                             <th>#</th>
                             <th>Name</th>
+                            <th>Username</th>
                             <th>Email</th>
                             <th>Registered On</th>
                             <th data-sortable="false">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($data['users'] as $user)
+                        @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{ $user->profile->full_name}}</td>
+                            <td>{{$user->username}}</td>
+                            <td>{{ empty($user->profile)?ucfirst($user->username):$user->profile->full_name}}</td>
                             <td>{{ $user->email}}</td>
                             <td>{{ $user->created_at}}</td>
                             <td>

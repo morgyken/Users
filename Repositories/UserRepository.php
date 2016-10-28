@@ -48,6 +48,8 @@ interface UserRepository {
      */
     public function createWithRolesFromCli($data, $roles, $activated = false);
 
+    public function createUserWithProfile($data, $roller);
+
     /**
      * Find a user by its ID
      * @param $id

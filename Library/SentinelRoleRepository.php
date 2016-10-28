@@ -10,10 +10,11 @@
  * =============================================================================
  */
 
-namespace Ignite\Users\Repositories;
+namespace Ignite\Users\Library;
 
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Ignite\Users\Events\RoleWasUpdated;
+use Ignite\Users\Repositories\RoleRepository;
 
 /**
  * Description of SentinelRoleRepository

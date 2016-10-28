@@ -11,13 +11,20 @@
  */
 
 namespace Ignite\Users\Library;
+use Ignite\Users\Entities\Sentinel;
+use Ignite\Users\Entities\User;
+use Ignite\Users\Entities\UserProfile;
+use Ignite\Users\Repositories\MyUsers;
+use Ignite\Users\Repositories\UserRepository;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 /**
  * Description of UsersFunctions
  *
  * @author samuel
  */
-class UsersFunctions {
+class UsersFunctions implements MyUsers {
 
     /**
      * Enroll user to system
@@ -25,7 +32,7 @@ class UsersFunctions {
      * @param UserRepository $user
      * @return bool Successful enrolment
      */
-    public static function add_system_user(Request $request, UserRepository $user) {
+    public function add_system_user(Request $request, UserRepository $user) {
         //for sentinel
         $user_data = [
             'username' => strtolower($request->login),
@@ -56,7 +63,7 @@ class UsersFunctions {
      * @param $id
      * @return bool
      */
-    public static function edit_system_user(Request $request, $id) {
+    public function edit_system_user(Request $request, $id) {
         DB::transaction(function () use ($request, $id) {
             $user = User::find($id);
             $user->username = strtolower($request->login);
@@ -82,19 +89,19 @@ class UsersFunctions {
         return true;
     }
 
-    public static function getSystemUsers() {
+    public function getSystemUsers() {
         $roles = ['roles' => function ($query) {
                 $query->select(['slug', 'name']);
             }
-                ];
-                return SentinelAuth::with($roles)->get()->reject(function ($value) {
-                            foreach ($value->roles as $role) {
-                                if ($role->slug == 'sudo') {
-                                    return true;
-                                }
-                            }
-                            return false;
-                        });
-            }
+        ];
+        return Sentinel::with($roles)->get()->reject(function ($value) {
+                    foreach ($value->roles as $role) {
+                        if ($role->slug == 'sudo') {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+    }
 
-        }
+}

@@ -13,6 +13,14 @@
 namespace Ignite\Users\Providers;
 
 use Cartalyst\Sentinel\Laravel\SentinelServiceProvider;
+use Ignite\Core\Contracts\Authentication;
+use Ignite\Users\Library\SentinelAuthentication;
+use Ignite\Users\Library\SentinelRoleRepository;
+use Ignite\Users\Library\SentinelUserRepository;
+use Ignite\Users\Library\UsersFunctions;
+use Ignite\Users\Repositories\MyUsers;
+use Ignite\Users\Repositories\RoleRepository;
+use Ignite\Users\Repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 class UsersServiceProvider extends ServiceProvider {
@@ -120,18 +128,10 @@ class UsersServiceProvider extends ServiceProvider {
     }
 
     private function registerBindings() {
-
-        $this->app->bind(
-                'Ignite\Users\Repositories\UserRepository', "Ignite\\Users\\Repositories\\{$this->driver}UserRepository"
-        );
-
-        $this->app->bind(
-                'Ignite\Users\Repositories\RoleRepository', "Ignite\\Users\\Repositories\\{$this->driver}RoleRepository"
-        );
-        $this->app->bind(
-                'Ignite\Core\Contracts\Authentication', "Ignite\\Users\\Repositories\\{$this->driver}Authentication"
-        );
-        ;
+        $this->app->bind(UserRepository::class, SentinelUserRepository::class);
+        $this->app->bind(RoleRepository::class, SentinelRoleRepository::class);
+        $this->app->bind(Authentication::class, SentinelAuthentication::class);
+        $this->app->bind(MyUsers::class, UsersFunctions::class);
     }
 
     private function registerMiddleware() {
