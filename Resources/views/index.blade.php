@@ -34,8 +34,8 @@
                         @foreach ($users as $user)
                         <tr>
                             <td>{{ $user->id }}</td>
-                            <td>{{$user->username}}</td>
                             <td>{{ empty($user->profile)?ucfirst($user->username):$user->profile->full_name}}</td>
+                            <td>{{$user->username}}</td>
                             <td>{{ $user->email}}</td>
                             <td>{{ $user->created_at}}</td>
                             <td>
