@@ -21,6 +21,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property-read mixed $gravator
  * @property-read \Ignite\Users\Entities\UserProfile $profile
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $readNotifications
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $unreadNotifications
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\User whereEmail($value)
