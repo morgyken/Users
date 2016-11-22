@@ -41,7 +41,7 @@ class ExtraUsersTableSeeder extends Seeder {
             $faker = Factory::create();
             $user_data = [
                 'username' => $role->slug,
-                'password' => bcrypt($role->name),
+                'password' => bcrypt($role->slug),
                 'email' => $faker->email,
                 'first_name' => $faker->firstName,
                 'middle_name' => $faker->lastName,

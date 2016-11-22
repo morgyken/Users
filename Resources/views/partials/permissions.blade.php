@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <?php foreach ($permissions as $name => $value): ?>
                 <div class="col-md-12">
-                    <h3>{{ ucfirst($name) }}</h3>
+                    <h3>{{ ucfirst($name) }} Module</h3>
                 </div>
                 <div class="clearfix"></div>
                 <?php foreach ($value as $subPermissionTitle => $permissionActions): ?>
@@ -21,13 +21,13 @@
                             </p>
                         </div>
                         <div class="clearfix"></div>
-                        <?php foreach (array_chunk($permissionActions, ceil(count($permissionActions) / 2)) as $permissionActionGroup): ?>
+                        <?php foreach (array_chunk($permissionActions, ceil(count($permissionActions) / 2), true) as $permissionActionGroup): ?>
                             <div class="col-md-3">
-                                <?php foreach ($permissionActionGroup as $permissionAction): ?>
+                                <?php foreach ($permissionActionGroup as $permissionAction => $name): ?>
                                     <div class="checkbox">
                                         <label for="<?php echo "$subPermissionTitle.$permissionAction" ?>">
                                             <input name="permissions[<?php echo "$subPermissionTitle.$permissionAction" ?>]" type="hidden" value="false" />
-                                            <input id="<?php echo "$subPermissionTitle.$permissionAction" ?>" name="permissions[<?php echo "$subPermissionTitle.$permissionAction" ?>]" type="checkbox" class="flat-blue" <?php echo array_get($model->permissions, "$subPermissionTitle.$permissionAction", false) === true ? 'checked' : '' ?> value="true" /> {{ ucfirst($permissionAction) }}
+                                            <input id="<?php echo "$subPermissionTitle.$permissionAction" ?>" name="permissions[<?php echo "$subPermissionTitle.$permissionAction" ?>]" type="checkbox" class="flat-blue" <?php echo array_get($model->permissions, "$subPermissionTitle.$permissionAction", false) === true ? 'checked' : '' ?> value="true" /> {{ ucfirst($name) }}
                                         </label>
                                     </div>
                                 <?php endforeach; ?>
