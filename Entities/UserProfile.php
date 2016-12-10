@@ -14,9 +14,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $last_name
  * @property string $job_description
  * @property string $phone
+ * @property mixed $photo
  * @property string $mpdb
  * @property string $pin
- * @property mixed $photo
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
  * @property-read mixed $full_name
  * @property-read mixed $name
  * @property-read \Ignite\Users\Entities\User $user
@@ -27,16 +29,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile whereLastName($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile whereJobDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile wherePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile wherePhoto($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile whereMpdb($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile wherePin($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile wherePhoto($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\UserProfile whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class UserProfile extends Model {
 
     protected $guarded = [];
     public $incrementing = false;
-    public $timestamps = false;
     public $primaryKey = 'user_id';
     public $table = 'users_user_profiles';
 

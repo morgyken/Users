@@ -35,8 +35,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->boolean('completed')->default(0);
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
         });
 
         Schema::create('persistences', function (Blueprint $table) {
@@ -44,8 +42,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->integer('user_id')->unsigned();
             $table->string('code');
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
             $table->unique('code');
         });
 
@@ -64,8 +60,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->string('name');
             $table->text('permissions')->nullable();
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
             $table->unique('slug');
         });
 
@@ -73,8 +67,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->integer('user_id')->unsigned();
             $table->integer('role_id')->unsigned();
             $table->nullableTimestamps();
-
-            $table->engine = 'InnoDB';
             $table->primary(['user_id', 'role_id']);
         });
 
@@ -84,8 +76,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->string('type');
             $table->string('ip')->nullable();
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
             $table->index('user_id');
         });
 
@@ -99,8 +89,6 @@ class MigrationCartalystSentinel extends Migration {
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->engine = 'InnoDB';
         });
     }
 

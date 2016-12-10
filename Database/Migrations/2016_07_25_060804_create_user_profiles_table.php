@@ -21,13 +21,14 @@ class CreateUserProfilesTable extends Migration {
             $column->string('phone')->nullable();
             $column->string('mpdb')->nullable();
             $column->string('pin')->nullable();
+            $column->timestamps();
             $column->foreign('user_id')
                     ->references('id')
                     ->on('users')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
         });
-        DB::statement("ALTER TABLE users_user_profiles ADD photo LONGBLOB");
+        DB::statement("ALTER TABLE users_user_profiles ADD photo LONGBLOB after phone");
     }
 
     /**

@@ -10,7 +10,7 @@
  * =============================================================================
  */
 
-namespace Ignite\Users\Entities;
+namespace Ignite\Users\Repositories;
 
 interface UserInterface {
 

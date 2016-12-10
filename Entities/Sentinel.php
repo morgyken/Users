@@ -14,6 +14,7 @@ namespace Ignite\Users\Entities;
 
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Users\EloquentUser;
+use Ignite\Users\Repositories\UserInterface;
 use Illuminate\Support\Facades\Config;
 
 /**
