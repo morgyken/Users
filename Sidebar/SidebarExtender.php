@@ -42,14 +42,17 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender {
         $menu->group('Dashboard', function (Group $group) {
             $group->item('Users', function(Item $item) {
                 $item->weight(70);
+                $item->authorize($this->auth->hasAccess('user.*'));
                 $item->icon('fa fa-users');
 
                 $item->item('View Users', function (Item $item) {
                     $item->icon('fa fa-user');
+                    $item->authorize($this->auth->hasAccess('user.*'));
                     $item->route('users.index');
                 });
                 $item->item('User Groups', function (Item $item) {
                     $item->icon('fa fa-user-md');
+                    $item->authorize($this->auth->hasAccess('roles'));
                     $item->route('users.role.index');
                 });
             });
