@@ -11,7 +11,7 @@
  */
 
 return [
-    'user.users' => [
+    'user' => [
         'view',
         'create',
         'save',
@@ -20,7 +20,7 @@ return [
         'delete',
         'sendResetPassword',
     ],
-    'user.roles' => [
+    'roles' => [
         'view',
         'create',
         'save',
