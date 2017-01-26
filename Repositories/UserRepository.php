@@ -37,7 +37,7 @@ interface UserRepository {
      * @param array $roles
      * @param bool $activated
      */
-    public function createWithRoles($data, $roles, $activated = false);
+    public function createWithRoles($data, $roles, $activated = true);
 
     /**
      * Create a user and assign roles to it
@@ -46,7 +46,7 @@ interface UserRepository {
      * @param array $roles
      * @param bool $activated
      */
-    public function createWithRolesFromCli($data, $roles, $activated = false);
+    public function createWithRolesFromCli($data, $roles, $activated = true);
 
     public function createUserWithProfile($data, $roller);
 
