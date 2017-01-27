@@ -26,54 +26,81 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1-1">
                     <div class="box-body">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                    {!! Form::label('first_name', 'First Name') !!}
-                                    {!! Form::text('first_name', old('first_name'), ['class' => 'form-control', 'placeholder' => 'First name']) !!}
+                        <div class="col-md-6">
+                            <div class="form-group req {{ $errors->has('title') ? ' has-error' : '' }}">
+                                {!! Form::label('title', 'Title',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::select('title',config('users.titles') ,old('title'), ['class' => 'form-control',]) !!}
+                                    {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                {!! Form::label('name', 'First Name',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('first_name', old('first_name'), ['class' => 'form-control', 'placeholder' => 'First Name']) !!}
                                     {!! $errors->first('first_name', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                    {!! Form::label('last_name', 'Last name') !!}
-                                    {!! Form::text('last_name', old('last_name'), ['class' => 'form-control', 'placeholder' => 'Last name']) !!}
+                            </div><br><br>
+                            <div class="form-group  {{ $errors->has('middle_name') ? ' has-error' : '' }}">
+                                {!! Form::label('name', 'Middle Name',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('middle_name', old('middle_name'), ['class' => 'form-control', 'placeholder' => 'Middle Name']) !!}
+                                    {!! $errors->first('middle_name', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('last_name') ? ' has-error' : '' }}">
+                                {!! Form::label('name', 'Last Name',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('last_name', old('last_name'), ['class' => 'form-control', 'placeholder' => 'Last Name']) !!}
                                     {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div>
+                            </div><br><br>
 
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                    {!! Form::label('username', 'Username') !!}
-                                    {!! Form::text('username', old('username'), ['class' => 'form-control', 'placeholder' =>'Username']) !!}
-                                    {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
+                            <div class="form-group {{ $errors->has('job') ? ' has-error' : '' }}">
+                                {!! Form::label('job', 'Job Description',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::textarea('job', old('job'), ['class' => 'form-control', 'placeholder' => 'Job Description','rows'=>3]) !!}
+                                    {!! $errors->first('job', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                    {!! Form::label('email', 'Email') !!}
-                                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' =>'Email']) !!}
+                            </div><br><br>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group {{ $errors->has('mpdb') ? ' has-error' : '' }}">
+                                {!! Form::label('mpdb', 'MPDB No',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('mpdb', old('mpdb'), ['class' => 'form-control', 'placeholder' => 'MPDB number']) !!}
+                                    {!! $errors->first('mpdb', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('mobile') ? ' has-error' : '' }}">
+                                {!! Form::label('tel', 'Mobile',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('mobile', old('mobile'), ['class' => 'form-control', 'placeholder' => 'Mobile No.']) !!}
+                                    {!! $errors->first('mobile', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('email') ? ' has-error' : '' }}">
+                                {!! Form::label('email', 'Email',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::email('email', old('email'), ['class' => 'form-control', 'placeholder' => 'User email']) !!}
                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                    {!! Form::label('password', 'Password') !!}
-                                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('login') ? ' has-error' : '' }}">
+                                {!! Form::label('login', 'Login ID',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::text('login', old('login'), ['class' => 'form-control', 'placeholder' => 'Username','autocomplete'=>'off']) !!}
+                                    {!! $errors->first('login', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div><br><br>
+                            <div class="form-group req {{ $errors->has('password') ? ' has-error' : '' }}">
+                                {!! Form::label('password', 'Password',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'Password','autocomplete'=>'off']) !!}
                                     {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                    {!! Form::label('password_confirmation', 'Password confirmation') !!}
-                                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
-                                    {!! $errors->first('password_confirmation', '<span class="help-block">:message</span>') !!}
-                                </div>
-                            </div>
+                            </div><br><br>
+
                         </div>
                     </div>
                 </div>

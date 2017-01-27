@@ -20,6 +20,8 @@ use Ignite\Users\Http\Requests\UpdateUserRequest;
 use Ignite\Users\Repositories\MyUsers;
 use Ignite\Users\Repositories\RoleRepository;
 use Ignite\Users\Repositories\UserRepository;
+use Ignite\Users\Entities\UserRoles;
+use Ignite\Users\Entities\UserProfile;
 use Illuminate\Http\Request;
 
 class UsersController extends UserBaseController {
@@ -136,9 +138,45 @@ class UsersController extends UserBaseController {
      * @param  CreateUserRequest $request
      * @return Response
      */
-    public function store(CreateUserRequest $request) {
+    public function ___store(CreateUserRequest $request) {
         $data = $this->mergeRequestWithPermissions($request);
         $this->user->createWithRoles($data, $request->roles, true);
+        flash('User created');
+        return redirect()->route('users.index');
+    }
+
+    public function store(Request $request) {
+        \DB::transaction(function() use ($request) {
+            $user = new User;
+            $user->username = strtolower($request->login);
+            $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->save();
+
+            foreach ($request->roles as $key => $value) {
+                $role = new UserRoles;
+                $role->user_id = $user->id;
+                $role->role_id = $value;
+                $role->save();
+            }
+
+            $profile = UserProfile::findOrNew($user->user_id);
+            $profile->user_id = $user->id;
+            $profile->first_name = ucfirst($request->first_name);
+            $profile->last_name = ucfirst($request->last_name);
+            $profile->middle_name = ucfirst($request->middlename);
+            $profile->job_description = $request->job;
+            $profile->title = $request->title;
+            $profile->mpdb = $request->mpdb;
+            $profile->pin = $request->pin;
+            $profile->save(); //build parameters
+            $param = [
+                'username' => $request->login,
+                'password' => $request->password,
+                'to' => $request->email
+            ]; //not yet ready
+            //sendWelcomeMail($param);
+        });
         flash('User created');
         return redirect()->route('users.index');
     }

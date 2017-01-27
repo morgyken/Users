@@ -11,6 +11,7 @@
  */
 
 namespace Ignite\Users\Library;
+
 use Ignite\Users\Entities\Sentinel;
 use Ignite\Users\Entities\User;
 use Ignite\Users\Entities\UserProfile;
@@ -93,15 +94,15 @@ class UsersFunctions implements MyUsers {
         $roles = ['roles' => function ($query) {
                 $query->select(['slug', 'name']);
             }
-        ];
-        return Sentinel::with($roles)->get()->reject(function ($value) {
-                    foreach ($value->roles as $role) {
-                        if ($role->slug == 'sudo') {
-                            return true;
-                        }
-                    }
-                    return false;
-                });
-    }
+                ];
+                return Sentinel::with($roles)->get()->reject(function ($value) {
+                            foreach ($value->roles as $role) {
+                                if ($role->slug == 'sudo') {
+                                    return true;
+                                }
+                            }
+                            return false;
+                        });
+            }
 
-}
+        }
