@@ -12,6 +12,7 @@
 
 $router->get('/', ['as' => 'index', 'uses' => 'UsersController@index']);
 $router->get('create/user', ['as' => 'create', 'uses' => 'UsersController@create_users']);
+$router->get('delete/user/{user}', ['as' => 'purge', 'uses' => 'UsersController@purge_user']);
 $router->post('create/users', ['as' => 'store', 'uses' => 'UsersController@store']);
 $router->get('manage/{user}/edit', ['as' => 'edit', 'uses' => 'UsersController@edit']);
 $router->put('manage/{user}/edit', ['as' => 'update', 'uses' => 'UsersController@update']);
