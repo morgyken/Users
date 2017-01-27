@@ -1,13 +1,10 @@
 <?php
 
-/*
- * =============================================================================
- *
- * Collabmed Solutions Ltd
- * Project: Collabmed Health Platform
- * Author: Samuel Okoth <sodhiambo@collabmed.com>
- *
- * =============================================================================
+/**
+ * Created by PhpStorm.
+ * User: samuel
+ * Date: 3/25/16
+ * Time: 1:27 PM
  */
 return [
     'titles' => [
@@ -29,18 +26,27 @@ return [
         2 => 'Suspended'
     ],
     'roles' => [
-        1 => 'Administrator',
-        2 => 'Sudo',
-        3 => 'User',
-        4 => 'Receptionist',
-        5 => 'Doctor',
-        6 => 'Cashier',
-        7 => 'Drug Stores Manger',
-        8 => 'Lab Technician',
-        9 => 'Nurse',
-        10 => 'Pharmacist',
-        11 => 'Physio Therapy Technician',
-        12 => 'Radiology Technician',
-        13 => 'UltraSound Technician',
+        'User',
+        'sudo',
+        'Receptionist',
+        'Cashier',
+        'Doctor',
+        'Drug Stores Manger',
+        'Lab Technician',
+        'Nurse',
+        'Pharmacist',
+        'Physio Therapy Technician',
+        'Radiology Technician',
+        'Admin',
+        'UltraSound Technician',
     ],
+    'permissions' => [
+        1 => ['name' => 'Reception', 'desc' => 'Add new patient, upload patient documents, create appointments,checkin patients'],
+        2 => ['name' => 'Patient Evaluation', 'desc' => 'Record patient vitals, add treatment entry, add notes'],
+        3 => ['name' => 'SMS', 'desc' => 'Send SMS messages, access contacts, read incoming messages'],
+        4 => ['name' => 'Billing', 'desc' => 'Bill patients, receive payments and view patient accounts'],
+        5 => ['name' => 'Reports', 'desc' => 'View system reports - includes cashier reports, doctor notes, and procedures'],
+        6 => ['name' => 'Settings', 'desc' => 'Change system settings change values that affect system operations. *Only if you trust user'],
+        7 => ['name' => 'Setup', 'desc' => 'Change initial system configurations.'],
+    ]
 ];
