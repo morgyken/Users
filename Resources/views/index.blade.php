@@ -41,6 +41,7 @@
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="{{ route('users.purge', [$user->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                     <?php /* if ($user->id != $currentUser->id): ?>
                                       <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.user.user.destroy', [$user->id]) }}"><i class="fa fa-trash"></i></button>
                                       <?php endif; */ ?>

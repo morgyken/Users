@@ -183,4 +183,15 @@ class UsersController extends UserBaseController {
         return redirect()->route('users.index');
     }
 
+    public function purge_user(Request $request) {
+        \DB::transaction(function() use ($request) {
+            $user = User::find($request->user);
+            //$profile = UserProfile::findOrNew($request->user_id);
+            $user->delete();
+            //$profile->delete();
+        });
+        flash('User Deleted');
+        return redirect()->route('users.index');
+    }
+
 }
