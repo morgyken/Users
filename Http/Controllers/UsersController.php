@@ -178,6 +178,7 @@ class UsersController extends UserBaseController {
                 'to' => $request->email
             ]; //not yet ready
             //sendWelcomeMail($param);
+            $this->activate_user($user->id);
         });
         flash('User created');
         return redirect()->route('users.index');
@@ -192,6 +193,18 @@ class UsersController extends UserBaseController {
         });
         flash('User Deleted');
         return redirect()->route('users.index');
+    }
+
+    public function activate_user($id) {
+        $activation = new \Ignite\Users\Entities\Activation;
+        $activation->user_id = $id;
+        $activation->code = $this->generateCode(40);
+        $activation->completed = 1;
+        return $activation->save();
+    }
+
+    public function generateCode($length) {
+        return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
     }
 
 }
