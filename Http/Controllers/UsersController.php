@@ -153,11 +153,13 @@ class UsersController extends UserBaseController {
             $user->password = bcrypt($request->password);
             $user->save();
 
-            foreach ($request->roles as $key => $value) {
-                $role = new UserRoles;
-                $role->user_id = $user->id;
-                $role->role_id = $value;
-                $role->save();
+            if (isset($request->roles)) {
+                foreach ($request->roles as $key => $value) {
+                    $role = new UserRoles;
+                    $role->user_id = $user->id;
+                    $role->role_id = $value;
+                    $role->save();
+                }
             }
 
             $profile = UserProfile::findOrNew($user->user_id);

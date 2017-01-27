@@ -20,7 +20,6 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab_1-1" data-toggle="tab">Details</a></li>
-                <li class=""><a href="#tab_2-2" data-toggle="tab">Role</a></li>
                 <li class=""><a href="#tab_3-3" data-toggle="tab">Permissions</a></li>
             </ul>
             <div class="tab-content">
@@ -101,22 +100,17 @@
                                 </div>
                             </div><br><br>
 
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="tab_2-2">
-                    <div class="box-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Roles</label>
-                                    <select multiple="" class="form-control" name="roles[]">
+                            <div class="form-group req">
+                                <label class="col-md-4">Roles</label>
+                                <div class="col-md-8">
+                                    <select multiple="" required="" class="form-control" name="roles[]">
                                         <?php foreach ($roles as $role): ?>
                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
