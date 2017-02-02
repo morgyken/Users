@@ -20,7 +20,9 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab_1-1" data-toggle="tab">Details</a></li>
+                <!--
                 <li class=""><a href="#tab_3-3" data-toggle="tab">Permissions</a></li>
+                -->
             </ul>
             <div class="tab-content">
                 <div class="tab-pane active" id="tab_1-1">
@@ -114,15 +116,16 @@
                         </div>
                     </div>
                 </div>
+                <!--
                 <div class="tab-pane" id="tab_3-3">
                     <div class="box-body">
                         @include('users::partials.permissions-create')
                     </div>
-                </div>
+                </div> -->
                 <div class="box-footer">
                     <button type="submit" class="btn btn-primary btn-flat">Create</button>
                     <button class="btn btn-default btn-flat" name="button" type="reset">Reset</button>
-                    <a class="btn btn-danger pull-right btn-flat" href="{{ route('users.index')}}"><i class="fa fa-times"></i> {{ trans('user::button.cancel') }}</a>
+                    <a class="btn btn-danger pull-right btn-flat" href="{{ route('users.index')}}"><i class="fa fa-times"></i> Cancel</a>
                 </div>
             </div>
         </div>
