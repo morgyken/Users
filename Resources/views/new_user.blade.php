@@ -64,6 +64,15 @@
                                     {!! $errors->first('job', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div><br><br>
+
+                            <div class="form-group">
+                                {!! Form::label('job', 'User is a Supplier?',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    <input type="checkbox" class="is_supplier" name="is_supplier">
+                                    {!! Form::select('supplier',get_suppliers(),null,['class'=>'suppliers form-control']) !!}
+                                </div>
+                            </div><br><br>
+
                         </div>
                         <div class="col-md-6">
                             <div class="form-group {{ $errors->has('mpdb') ? ' has-error' : '' }}">
@@ -146,6 +155,16 @@
 @section('scripts')
 <script>
     $(document).ready(function () {
+
+        $(".suppliers").hide();
+        $(".is_supplier").click(function () {
+            if ($(this).is(":checked")) {
+                $(".suppliers").show(300);
+            } else {
+                $(".suppliers").hide(200);
+            }
+        });
+
         $(document).keypressAction({
             actions: [
                 {key: 'b', route: "{{route('users.index')}}"}

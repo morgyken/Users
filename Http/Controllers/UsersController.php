@@ -151,6 +151,9 @@ class UsersController extends UserBaseController {
             $user->username = strtolower($request->login);
             $user->email = $request->email;
             $user->password = bcrypt($request->password);
+            if ($request->has('is_supplier')) {
+                $user->supplier_account = $request->supplier;
+            }
             $user->save();
 
             if (isset($request->roles)) {
@@ -161,6 +164,7 @@ class UsersController extends UserBaseController {
                     $role->save();
                 }
             }
+
 
             $profile = UserProfile::findOrNew($user->user_id);
             $profile->user_id = $user->id;
