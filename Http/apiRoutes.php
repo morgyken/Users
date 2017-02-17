@@ -9,3 +9,5 @@
  *
  * =============================================================================
  */
+
+$router->post('authenticate/user',['as'=>'auth','uses'=>'AndroidController@authenticateUser']);

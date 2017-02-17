@@ -20,33 +20,33 @@ use Illuminate\Support\Facades\Config;
 /**
  * Ignite\Users\Entities\Sentinel
  *
- * @property integer $id
+ * @property int $id
  * @property string $email
  * @property string $username
  * @property string $password
- * @property string $permissions
- * @property boolean $active
+ * @property array $permissions
+ * @property bool $active
  * @property string $last_login
  * @property string $remember_token
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
- * @property-read mixed $gravatar
- * @property-read \Ignite\Users\Entities\UserProfile $profile
- * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Roles\EloquentRole[] $roles
- * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[] $persistences
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Activations\EloquentActivation[] $activations
+ * @property-read mixed $gravatar
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[] $persistences
+ * @property-read \Ignite\Users\Entities\UserProfile $profile
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Reminders\EloquentReminder[] $reminders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Roles\EloquentRole[] $roles
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Throttling\EloquentThrottle[] $throttle
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereActive($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereEmail($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereUsername($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereLastLogin($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel wherePermissions($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereActive($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereLastLogin($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereRememberToken($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Sentinel whereUsername($value)
  * @mixin \Eloquent
  */
 class Sentinel extends EloquentUser implements UserInterface {
