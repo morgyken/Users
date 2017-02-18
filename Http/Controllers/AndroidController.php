@@ -23,7 +23,7 @@ class AndroidController extends Controller
             $column = 'email';
         }
         if (Auth::attempt([$column => $request->username, 'password' => $request->password])) {
-            $response['user'] = User::with('profile')->where($column, $request->username)->get();
+            $response['user'] = User::with('profile')->where($column, $request->username)->first();
         } else {
             $response["error"] = true;
             $response["error_msg"] = "Login credentials are wrong. Please try again!";
