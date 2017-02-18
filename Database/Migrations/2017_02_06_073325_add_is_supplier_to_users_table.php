@@ -11,7 +11,7 @@ class AddIsSupplierToUsersTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::table('users', function (Blueprint $table) {
+      /*  Schema::table('users', function (Blueprint $table) {
             $table->integer('supplier_account')->unsigned()->nullable();
 
             $table->foreign('supplier_account')
@@ -19,7 +19,7 @@ class AddIsSupplierToUsersTable extends Migration {
                     ->on('inventory_suppliers')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
-        });
+        });*/
     }
 
     /**

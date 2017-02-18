@@ -11,12 +11,12 @@ class CreateNotificationsTable extends Migration {
      * @return void
      */
     public function up() {
-        Schema::table('core_notifications', function (Blueprint $column) {
+       /* Schema::table('core_notifications', function (Blueprint $column) {
             $column->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
         Schema::table('core_dashboard_widgets', function (Blueprint $column) {
             $column->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
+        });*/
     }
 
     /**
@@ -25,7 +25,7 @@ class CreateNotificationsTable extends Migration {
      * @return void
      */
     public function down() {
-        Schema::dropIfExists('core_notifications');
+       // Schema::dropIfExists('core_notifications');
     }
 
 }
