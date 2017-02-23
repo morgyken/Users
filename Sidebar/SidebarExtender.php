@@ -52,7 +52,8 @@ class SidebarExtender implements \Maatwebsite\Sidebar\SidebarExtender {
                 });
                 $item->item('User Groups', function (Item $item) {
                     $item->icon('fa fa-user-md');
-                    $item->authorize($this->auth->hasAccess('roles'));
+                    //$item->authorize($this->auth->hasAccess('roles'));
+                    $item->authorize($this->auth->hasAccess('user.*'));
                     $item->route('users.role.index');
                 });
             });

@@ -31,7 +31,7 @@
                             <div class="form-group req {{ $errors->has('title') ? ' has-error' : '' }}">
                                 {!! Form::label('title', 'Title',['class'=>'control-label col-md-4']) !!}
                                 <div class="col-md-8">
-                                    {!! Form::select('title',config('users.titles') ,old('title'), ['class' => 'form-control',]) !!}
+                                    {!! Form::select('title',mconfig('users.users.titles') ,old('title'), ['class' => 'form-control',]) !!}
                                     {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div><br><br>
