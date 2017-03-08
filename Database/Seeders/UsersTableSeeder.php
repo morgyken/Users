@@ -41,6 +41,17 @@ class UsersTableSeeder extends Seeder {
             'job_description' => 'Systems developer',
         ];
         $this->user->createUserWithProfile($sudo_data, 2);
+        $sudo_data = [
+            'username' => 'bravo',
+            'password' => bcrypt('bravo'),
+            'email' => 'bkiptoo@collabmed.com',
+            'first_name' => 'Bravo',
+            'middle_name' => 'Kiptoo',
+            'last_name' => 'Trotsky',
+            'phone' => '0718784058',
+            'job_description' => 'Systems Developer',
+        ];
+        $this->user->createUserWithProfile($sudo_data, 2);
     }
 
 }
