@@ -26,4 +26,8 @@ class Roles extends Model {
     protected $fillable = [];
     public $table = 'roles';
 
+    public function assignees() {
+        return $this->hasMany(UserRoles::class, 'role_id');
+    }
+
 }
