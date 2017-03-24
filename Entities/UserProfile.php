@@ -57,4 +57,8 @@ class UserProfile extends Model {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
+    public function partnerInstitution() {
+        return $this->belongsTo(\Ignite\Evaluation\Entities\PartnerInstitution::class, 'partner_institution', 'id');
+    }
+
 }

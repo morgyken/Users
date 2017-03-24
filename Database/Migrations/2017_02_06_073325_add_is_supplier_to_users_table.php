@@ -11,15 +11,16 @@ class AddIsSupplierToUsersTable extends Migration {
      * @return void
      */
     public function up() {
-      /*  Schema::table('users', function (Blueprint $table) {
-            $table->integer('supplier_account')->unsigned()->nullable();
+        /*
+          Schema::table('users', function (Blueprint $table) {
+          $table->integer('supplier_account')->unsigned()->nullable();
 
-            $table->foreign('supplier_account')
-                    ->references('id')
-                    ->on('inventory_suppliers')
-                    ->onUpdate('cascade')
-                    ->onDelete('cascade');
-        });*/
+          $table->foreign('supplier_account')
+          ->references('id')
+          ->on('inventory_suppliers')
+          ->onUpdate('cascade')
+          ->onDelete('cascade');
+          }); */
     }
 
     /**

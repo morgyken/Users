@@ -65,12 +65,34 @@
                                     {!! $errors->first('job', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div><br><br>
-
-                            <div class="form-group">
-                                {!! Form::label('job', 'User is a Supplier?',['class'=>'control-label col-md-4']) !!}
+                            <!-- Not Active at the moment -->
+                            <!--
+                            <div class="form-group"><br><br>
+                                {!! Form::label('job', 'User is a Supplier',['class'=>'control-label col-md-4']) !!}
                                 <div class="col-md-8">
                                     <input type="checkbox" class="is_supplier" name="is_supplier">
+                                    <small>
+                                        <i>User is linked with a supplier firm</i>
+                                    </small>
                                     {!! Form::select('supplier',get_suppliers(),null,['class'=>'suppliers form-control']) !!}
+                                </div>
+                            </div><br><br> 
+                            -->
+
+                            <div class="form-group">
+                                {!! Form::label('job', 'External Doctor',['class'=>'control-label col-md-4']) !!}
+                                <div class="col-md-8">
+                                    <input type="checkbox" class="external_doctor" name="has_external_doctor">
+                                    <small>
+                                        <i>User is an External Doctor or Staff at partner institution</i>
+                                    </small>
+
+                                    <select class="partners form-control" name="partner">
+                                        <option>Select Partner Institution</option>
+                                        <?php foreach ($partners as $p): ?>
+                                            <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                        <?php endforeach; ?>
+                                    </select>
                                 </div>
                             </div><br><br>
 
@@ -163,6 +185,15 @@
                 $(".suppliers").show(300);
             } else {
                 $(".suppliers").hide(200);
+            }
+        });
+
+        $(".partners").hide();
+        $(".external_doctor").click(function () {
+            if ($(this).is(":checked")) {
+                $(".partners").show(300);
+            } else {
+                $(".partners").hide(200);
             }
         });
 
