@@ -21,10 +21,18 @@ class CreateUserProfilesTable extends Migration {
             $column->string('phone')->nullable();
             $column->string('mpdb')->nullable();
             $column->string('pin')->nullable();
+            $column->integer('partner_institution')->unsigned()->nullable();
             $column->timestamps();
+
             $column->foreign('user_id')
                     ->references('id')
                     ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
+            $column->foreign('partner_institution')
+                    ->references('id')
+                    ->on('evaluation_lab_partner_institutions')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
         });

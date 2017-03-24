@@ -85,10 +85,27 @@ class MigrationCartalystSentinel extends Migration {
             $table->string('username')->unique();
             $table->string('password');
             $table->text('permissions')->nullable();
+            $table->integer('supplier_account')->unsigned()->nullable();
             $table->boolean('active')->default(true);
             $table->timestamp('last_login')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('supplier_account')
+                    ->references('id')
+                    ->on('inventory_suppliers')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
+
+        Schema::table('evaluation_visits', function (Blueprint $table) {
+            $table->integer('external_doctor')->unsigned()->nullable();
+
+            $table->foreign('external_doctor')
+                    ->references('id')
+                    ->on('users')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
         });
     }
 

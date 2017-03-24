@@ -107,6 +107,7 @@ class UsersController extends UserBaseController {
         $this->data['roles'] = $roles->all()->reject(function ($value) {
                     return $value->slug === 'sudo';
                 })->pluck('name', 'id');
+
         $this->data['users'] = $this->my_users->getSystemUsers();
         return view('settings::users', ['data' => $this->data]);
     }
@@ -128,8 +129,8 @@ class UsersController extends UserBaseController {
      */
     public function create_users() {
         $roles = $this->role->all();
-
-        return view('users::new_user', compact('roles'));
+        $partners = \Ignite\Evaluation\Entities\PartnerInstitution::all();
+        return view('users::new_user', compact('roles', 'partners'));
     }
 
     /**
@@ -175,6 +176,13 @@ class UsersController extends UserBaseController {
             $profile->title = $request->title;
             $profile->mpdb = $request->mpdb;
             $profile->pin = $request->pin;
+            if ($request->has('has_external_doctor')) {
+                try {
+                    $profile->partner_institution = $request->partner;
+                } catch (\Exception $ex) {
+                    //
+                }
+            }
             $profile->save(); //build parameters
             $param = [
                 'username' => $request->login,
