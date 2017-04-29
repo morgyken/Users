@@ -37,3 +37,7 @@ function all_roles() {
                 return $name->slug == 'sudo';
             })->pluck('name', 'id');
 }
+
+function get_external_institutions() {
+    return Ignite\Evaluation\Entities\PartnerInstitution::all()->pluck('name', 'id');
+}
