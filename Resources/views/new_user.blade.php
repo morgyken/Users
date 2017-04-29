@@ -64,20 +64,8 @@
                                     {!! Form::textarea('job', old('job'), ['class' => 'form-control', 'placeholder' => 'Job Description','rows'=>3]) !!}
                                     {!! $errors->first('job', '<span class="help-block">:message</span>') !!}
                                 </div>
-                            </div><br><br>
-                            <!-- Not Active at the moment -->
-                            <!--
-                            <div class="form-group"><br><br>
-                                {!! Form::label('job', 'User is a Supplier',['class'=>'control-label col-md-4']) !!}
-                                <div class="col-md-8">
-                                    <input type="checkbox" class="is_supplier" name="is_supplier">
-                                    <small>
-                                        <i>User is linked with a supplier firm</i>
-                                    </small>
-                                    {!! Form::select('supplier',get_suppliers(),null,['class'=>'suppliers form-control']) !!}
-                                </div>
-                            </div><br><br> 
-                            -->
+                            </div>
+                            <br><br>
 
                             <div class="form-group">
                                 {!! Form::label('job', 'External Doctor',['class'=>'control-label col-md-4']) !!}

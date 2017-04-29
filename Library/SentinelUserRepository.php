@@ -156,11 +156,30 @@ class SentinelUserRepository implements UserRepository {
 
         $user = $user->fill($data);
         $user->save();
+        $this->update_profile($userId, $data);
 
         event(new UserWasUpdated($user));
 
         if (!empty($roles)) {
             $user->roles()->sync($roles);
+        }
+    }
+
+    public function update_profile($user, $data) {
+        $profile = UserProfile::findOrNew($user);
+        try {
+            $profile->user_id = $user;
+            $profile->first_name = ucfirst($data['first_name']);
+            $profile->last_name = ucfirst($data['last_name']);
+            $profile->partner_institution = $data['partner_institution'];
+            $profile->job_description = $data['job_description'];
+            $profile->title = $data['title'];
+            $profile->mpdb = $data['mpdp'];
+            $profile->phone = $data['phone'];
+            $profile->pin = $data['pin'];
+            $profile->save();
+        } catch (\Exception $e) {
+
         }
     }
 

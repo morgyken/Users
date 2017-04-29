@@ -19,6 +19,20 @@
                 <div class="tab-pane active" id="tab_1-1">
                     <div class="box-body">
                         <div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                    {!! Form::label('title', 'Title') !!}
+                                    {!! Form::select('title',mconfig('users.users.titles') ,old('title'), ['class' => 'form-control',]) !!}
+                                    {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
+                                    {!! Form::label('username', 'Username') !!}
+                                    {!! Form::text('username', old('username', $user->username), ['class' => 'form-control', 'placeholder' =>'Username']) !!}
+                                    {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
                             <div class="col-sm-4">
                                 <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                     {!! Form::label('first_name', 'First name') !!}
@@ -33,6 +47,9 @@
                                     {!! $errors->first('last_name', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-sm-4">
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     {!! Form::label('email', 'Email') !!}
@@ -40,20 +57,54 @@
                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
+                            <div class="col-sm-4">
+                                <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                                    {!! Form::label('phone', 'Phone Number') !!}
+                                    {!! Form::text('phone', old('phone', $user->profile->phone), ['class' => 'form-control', 'placeholder' => 'Phone Number']) !!}
+                                    {!! $errors->first('phone', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group{{ $errors->has('job_description') ? ' has-error' : '' }}">
+                                    {!! Form::label('Job Description', 'Job Description') !!}
+                                    {!! Form::textarea('job_description', old('job_description',$user->profile->job_description), ['class' => 'form-control', 'placeholder' => 'Job Description','rows'=>3]) !!}
+                                    {!! $errors->first('job_description', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group{{ $errors->has('mpdp') ? ' has-error' : '' }}">
+                                    {!! Form::label('mpdp', 'Mpdp') !!}
+                                    {!! Form::text('mpdp', old('mpdp', $user->profile->mpdp), ['class' => 'form-control', 'placeholder' => 'Mpdp']) !!}
+                                    {!! $errors->first('mpdp', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group{{ $errors->has('pin') ? ' has-error' : '' }}">
+                                    {!! Form::label('pin', 'Pin') !!}
+                                    {!! Form::text('pin', old('pin', $user->profile->pin), ['class' => 'form-control', 'placeholder' => 'Pin']) !!}
+                                    {!! $errors->first('pin', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group{{ $errors->has('partner_institution') ? ' has-error' : '' }}">
+                                    {!! Form::label('partner_institution', 'Partner Institution') !!}
+                                    {!! Form::select('partner_institution',get_external_institutions(), old('partner_institution',$user->profile->partner_institution), ['class' => 'form-control company', 'placeholder' => 'Choose...']) !!}
+                                    {!! $errors->first('partner_institution', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="checkbox{{ $errors->has('activated') ? ' has-error' : '' }}">
                                     <input type="hidden" value="{{ $user->id === $currentUser->id ? '1' : '0' }}" name="activated"/>
                                     <?php $oldValue = (bool) $user->isActivated() ? 'checked' : ''; ?>
                                     <label for="activated">
-                                        <input id="activated"
-                                               name="activated"
-                                               type="checkbox"
-                                               class="flat-blue"
-                                               {{ $user->id === $currentUser->id ? 'disabled' : '' }}
-                                        {{ old('activated', $oldValue) }}
-                                        value="1" />
+                                        <input id="activated" name="activated" type="checkbox" class="flat-blue" {{ $user->id === $currentUser->id ? 'disabled' : '' }} {{ old('activated', $oldValue) }} value="1" />
                                         Activated
                                         {!! $errors->first('activated', '<span class="help-block">:message</span>') !!}
                                     </label>

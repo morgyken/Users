@@ -19,13 +19,14 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-                <table class="data-table table table-bordered table-hover">
+                <table class="data-table table table-bordered table-hover table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>Role(s)</th>
                             <th>Registered On</th>
                             <th data-sortable="false">Actions</th>
                         </tr>
@@ -37,14 +38,22 @@
                             <td>{{ empty($user->profile)?ucfirst($user->username):$user->profile->full_name}}</td>
                             <td>{{$user->username}}</td>
                             <td>{{ $user->email}}</td>
+                            <td>
+                                @foreach($user->roles as $role)
+                                {{ucfirst($role->Roles->name)}}|
+                                @endforeach
+                                @if($user->profile->partner_institution>0)
+                                <span class="label label-primary label-xs">External User</span>
+                                @endif
+                            </td>
                             <td>{{ $user->created_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ route('users.edit', [$user->id]) }}" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
                                     <a href="{{ route('users.purge', [$user->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
-                                    <?php /* if ($user->id != $currentUser->id): ?>
-                                      <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.user.user.destroy', [$user->id]) }}"><i class="fa fa-trash"></i></button>
-                                      <?php endif; */ ?>
+                                        <?php /* if ($user->id != $currentUser->id): ?>
+                                          <button class="btn btn-danger btn-flat" data-toggle="modal" data-target="#modal-delete-confirmation" data-action-target="{{ route('admin.user.user.destroy', [$user->id]) }}"><i class="fa fa-trash"></i></button>
+                                          <?php endif; */ ?>
                                 </div>
                             </td>
                         </tr>
