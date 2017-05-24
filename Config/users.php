@@ -39,6 +39,7 @@ return [
         'Radiology Technician',
         'Admin',
         'UltraSound Technician',
+        'External User',
     ],
     'permissions' => [
         1 => ['name' => 'Reception', 'desc' => 'Add new patient, upload patient documents, create appointments,checkin patients'],
