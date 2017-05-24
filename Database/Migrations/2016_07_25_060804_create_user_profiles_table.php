@@ -35,6 +35,7 @@ class CreateUserProfilesTable extends Migration {
                     ->on('evaluation_lab_partner_institutions')
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
+                    
         });
         DB::statement("ALTER TABLE users_user_profiles ADD photo LONGBLOB after phone");
     }
