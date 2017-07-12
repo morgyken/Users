@@ -16,6 +16,10 @@
         "Activation": "Cartalyst\\Sentinel\\Laravel\\Facades\\Activation",
         "Reminder": "Cartalyst\\Sentinel\\Laravel\\Facades\\Reminder"
     },
+    "widgets": [
+        "Ignite\\Users\\Widgets\\UserCountWidget",
+        "Ignite\\Users\\Widgets\\ActiveWidget"
+    ],
     "files": [
         "helpers.php",
         "composers.php"
