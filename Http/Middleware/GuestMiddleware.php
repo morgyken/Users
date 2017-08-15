@@ -35,7 +35,7 @@ class GuestMiddleware {
      */
     public function handle($request, Closure $next) {
         if ($this->auth->check()) {
-            return redirect()->route('core.dashboard');
+            return redirect()->route('system.dashboard');
         }
         return $next($request);
     }
