@@ -35,7 +35,11 @@ class GuestMiddleware {
      */
     public function handle($request, Closure $next) {
         if ($this->auth->check()) {
-            return redirect()->route('system.dashboard');
+            if(count(get_clinics()->toArray())>1){
+                return redirect()->route('users.clinic');
+            }else{
+                return redirect()->route('system.dashboard');
+            }
         }
         return $next($request);
     }

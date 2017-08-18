@@ -11,6 +11,10 @@
  */
 
 $router->get('/', ['as' => 'index', 'uses' => 'UsersController@index']);
+
+$router->get('clinic', ['as' => 'clinic', 'uses' => 'AuthController@getClinic']);
+$router->post('clinic', ['as' => 'clinic', 'uses' => 'AuthController@setClinic']);
+
 $router->get('create/user', ['as' => 'create', 'uses' => 'UsersController@create_users']);
 $router->get('delete/user/{user}', ['as' => 'purge', 'uses' => 'UsersController@purge_user']);
 $router->post('create/users', ['as' => 'store', 'uses' => 'UsersController@store']);

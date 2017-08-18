@@ -87,8 +87,19 @@ class UsersController extends UserBaseController {
     public function update($id, UpdateUserRequest $request) {
         $data = $this->mergeRequestWithPermissions($request);
         $this->user->updateAndSyncRoles($id, $data, $request->roles);
+        $this->updateClinics($request);
         flash('User updated');
         return redirect()->route('users.index');
+    }
+
+    public function updateClinics(Request $request)
+    {
+        if ($request->has('clinics')) {
+            $profile = UserProfile::whereUser_id($request->user_id)
+                ->get()->first();
+            $profile->clinics = json_encode($request->clinics);
+            return $profile->save();
+        }
     }
 
     /**
@@ -165,7 +176,6 @@ class UsersController extends UserBaseController {
                     $role->save();
                 }
             }
-
 
             $profile = UserProfile::findOrNew($user->user_id);
             $profile->user_id = $user->id;
