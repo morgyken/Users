@@ -30,11 +30,6 @@ Login | @parent
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
     </div>
-    @if(!$clinic->isEmpty())
-    <div class="form-group has-feedback">
-        {!! Form::select('clinic',$clinic,null,['class'=>'form-control','required']) !!}
-    </div>
-    @endif
     <div class="row">
         <div class="col-xs-8">
             <div class="checkbox icheck">
@@ -49,7 +44,7 @@ Login | @parent
     </div>
 </form>
 
-<a href="{{ route('public.reset')}}">Forgot password</a><br>
+<a href="{{ route('public.reset')}}">Forgot password?</a><br>
 @if (mconfig('user.users.allow_user_registration'))
 <a href="{{ route('public.register')}}" class="text-center">Register</a>
 @endif

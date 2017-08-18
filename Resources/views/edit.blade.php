@@ -13,6 +13,7 @@
                 <li class="active"><a href="#tab_1-1" data-toggle="tab">User</a></li>
                 <li class=""><a href="#tab_2-2" data-toggle="tab">Roles</a></li>
                 <li class=""><a href="#tab_3-3" data-toggle="tab">Permissions</a></li>
+                <li class=""><a href="#clinic_tab" data-toggle="tab">Assign Clinic(s)</a></li>
                 <li class=""><a href="#password_tab" data-toggle="tab">Password</a></li>
             </ul>
             <div class="tab-content">
@@ -132,6 +133,13 @@
                         @include('users::partials.permissions', ['model' => $user])
                     </div>
                 </div>
+
+                <div class="tab-pane" id="clinic_tab">
+                    <div class="box-body">
+                        @include('users::partials.clinic', ['model' => $user])
+                    </div>
+                </div>
+
                 <div class="tab-pane" id="password_tab">
                     <div class="box-body">
                         <div class="row">

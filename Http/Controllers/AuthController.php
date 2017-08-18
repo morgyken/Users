@@ -22,6 +22,7 @@ use Ignite\Users\Http\Requests\ResetRequest;
 use Ignite\Users\Services\UserRegistration;
 use Ignite\Users\Services\UserResetter;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\Request;
 
 class AuthController extends BasePublicController {
 
@@ -51,11 +52,24 @@ class AuthController extends BasePublicController {
         if (!$error) {
             $this->default_clinic($request);
             flash()->success('Successfully logged in');
-            return redirect()->intended();
+            //return redirect()->intended();
+            $this->getClinic();
         }
         flash()->error($error);
         return redirect()->back()->withInput();
     }
+
+    public function getClinic() {
+        return view('users::clinic');
+    }
+
+    public function setClinic(Request $request) {
+        if ($request->has('clinic')) {
+            $request->session()->put('clinic', $request->clinic);
+        }
+        return redirect()->route('system.dashboard');
+    }
+
 
     public function getRegister() {
         return view('users::register');
