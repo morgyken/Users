@@ -41,3 +41,12 @@ function all_roles() {
 function get_external_institutions() {
     return Ignite\Evaluation\Entities\PartnerInstitution::all()->pluck('name', 'id');
 }
+
+function getUserClininics(){
+    try{
+        $clinics = \GuzzleHttp\json_decode(Auth::user()->profile->clinics);
+    }catch (\Exception $e){
+        $clinics = null;
+    }
+    return $clinics;
+}

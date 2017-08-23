@@ -67,4 +67,19 @@ class User extends Authenticatable {
         return $this->hasMany(UserRoles::class, 'user_id');
     }
 
+    public function getAdminAttribute() {
+        $is_admin = FALSE;
+
+        $roles = array();
+        foreach ($this->roles as $role) {
+            $roles[] = $role->roles->slug;
+        }
+
+        if (in_array("sudo", $roles) || in_array("admin", $roles)) {
+            $is_admin = TRUE;
+        }
+
+        return $is_admin;
+    }
+
 }
