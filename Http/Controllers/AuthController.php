@@ -52,7 +52,6 @@ class AuthController extends BasePublicController {
         if (!$error) {
             $this->default_clinic($request);
             flash()->success('Successfully logged in');
-            //return redirect()->intended();
             $this->getClinic();
         }
         flash()->error($error);
@@ -60,7 +59,11 @@ class AuthController extends BasePublicController {
     }
 
     public function getClinic() {
-        return view('users::clinic');
+        if (\Auth::user()->ex){
+            return redirect()->route('evaluation.exdoctor.patients');
+        }else{
+            return view('users::clinic');
+        }
     }
 
     public function setClinic(Request $request) {

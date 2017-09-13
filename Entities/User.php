@@ -82,4 +82,19 @@ class User extends Authenticatable {
         return $is_admin;
     }
 
+    public function getExAttribute() {
+        $is_ex = FALSE;
+
+        $roles = array();
+        foreach ($this->roles as $role) {
+            $roles[] = $role->roles->slug;
+        }
+
+        if (in_array("external-user", $roles)) {
+            $is_ex = TRUE;
+        }
+
+        return $is_ex;
+    }
+
 }
