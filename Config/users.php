@@ -49,5 +49,9 @@ return [
         5 => ['name' => 'Reports', 'desc' => 'View system reports - includes cashier reports, doctor notes, and procedures'],
         6 => ['name' => 'Settings', 'desc' => 'Change system settings change values that affect system operations. *Only if you trust user'],
         7 => ['name' => 'Setup', 'desc' => 'Change initial system configurations.'],
+    ],
+    'admin_contact' => [
+        'email' => 'admin@ech.co.ke',
+        'phone' => '0722111222'
     ]
 ];
