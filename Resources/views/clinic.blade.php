@@ -41,7 +41,7 @@ getUserClininics();
         <div class="lockscreen-wrapper">
             <div class="lockscreen-logo">
                 <a href=""><b>{{ config('practice.name') }}</b></a>
-                <h2>Select Clinic</h2>
+                <h2>Select Facility</h2>
             </div>
             <!-- User name -->
             <div class="lockscreen-name">{{Auth::user()->profile->full_name}}</div>
