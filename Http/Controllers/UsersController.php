@@ -179,6 +179,7 @@ class UsersController extends UserBaseController {
 
             $profile = UserProfile::findOrNew($user->user_id);
             $profile->user_id = $user->id;
+            //added employee_id to create rel between users & employees
             $profile->first_name = ucfirst($request->first_name);
             $profile->last_name = ucfirst($request->last_name);
             $profile->middle_name = ucfirst($request->middlename);

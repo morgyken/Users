@@ -2,6 +2,7 @@
 
 namespace Ignite\Users\Entities;
 
+use Ignite\Hr\Entities\Employee;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -95,6 +96,11 @@ class User extends Authenticatable {
         }
 
         return $is_ex;
+    }
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
 }

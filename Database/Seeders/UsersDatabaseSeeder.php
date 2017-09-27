@@ -17,5 +17,4 @@ class UsersDatabaseSeeder extends Seeder {
         $this->call(ExtraUsersTableSeeder::class);
         // $this->call("OthersTableSeeder");
     }
-
 }
