@@ -10,17 +10,17 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id
  * @property int $user_id
  * @property string $code
- * @property bool $completed
- * @property string $completed_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereCode($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereCompleted($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereCompletedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\Ignite\Users\Entities\Activation whereUserId($value)
+ * @property int $completed
+ * @property string|null $completed_at
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereCompleted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereCompletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Activation whereUserId($value)
  * @mixin \Eloquent
  */
 class Activation extends Model {
