@@ -9,5 +9,5 @@
  *
  * =============================================================================
  */
-
-$router->post('authenticate/user',['as'=>'auth','uses'=>'AndroidController@authenticateUser']);
+/** @var  \Illuminate\Routing\Router $router */
+$router->post('authenticate/user', ['as' => 'auth', 'uses' => 'AndroidController@authenticateUser']);

@@ -9,9 +9,11 @@
  *
  * =============================================================================
  */
+/** @var  \Illuminate\Routing\Router $router */
 # Login
 $router->get('login', ['middleware' => 'auth.guest', 'as' => 'login', 'uses' => 'AuthController@getLogin']);
 $router->post('login', ['as' => 'login.post', 'uses' => 'AuthController@postLogin']);
+$router->post('clinic-select', ['as' => 'clinic.post', 'uses' => 'AuthController@setClinic']);
 # Register
 
 $router->get('register', ['middleware' => 'auth.guest', 'as' => 'register', 'uses' => 'AuthController@getRegister']);
