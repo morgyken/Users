@@ -24,49 +24,56 @@ use Ignite\Users\Services\UserResetter;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 
-class AuthController extends BasePublicController {
+class AuthController extends BasePublicController
+{
 
     use DispatchesJobs;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
     }
 
-    public function getLogin() {
+    public function getLogin()
+    {
         return view('users::login');
     }
 
-    private function default_clinic(LoginRequest $request) {
+    private function default_clinic(LoginRequest $request)
+    {
         if ($request->has('clinic')) {
             $request->session()->put('clinic', $request->clinic);
         }
     }
 
-    public function postLogin(LoginRequest $request) {
+    public function postLogin(LoginRequest $request)
+    {
         $credentials = [
             'username' => $request->username,
             'password' => $request->password,
         ];
-        $remember = (bool) $request->get('remember_me', false);
+        $remember = (bool)$request->get('remember_me', false);
         $error = $this->auth->login($credentials, $remember);
         if (!$error) {
             $this->default_clinic($request);
             flash()->success('Successfully logged in');
-            $this->getClinic();
+            return $this->getClinic();
         }
         flash()->error($error);
         return redirect()->back()->withInput();
     }
 
-    public function getClinic() {
-        if (\Auth::user()->ex){
+    public function getClinic()
+    {
+        if (\Auth::user()->ex) {
             return redirect()->route('evaluation.exdoctor.patients');
-        }else{
-            return view('users::clinic');
         }
+        return view('users::clinic');
+
     }
 
-    public function setClinic(Request $request) {
+    public function setClinic(Request $request)
+    {
         if ($request->has('clinic')) {
             $request->session()->put('clinic', $request->clinic);
         }
@@ -74,22 +81,26 @@ class AuthController extends BasePublicController {
     }
 
 
-    public function getRegister() {
+    public function getRegister()
+    {
         return view('users::register');
     }
 
-    public function postRegister(RegisterRequest $request) {
+    public function postRegister(RegisterRequest $request)
+    {
         app(UserRegistration::class)->register($request->all());
         flash('Your account  was created. Please login');
         return redirect()->route('public.login');
     }
 
-    public function getLogout() {
+    public function getLogout()
+    {
         $this->auth->logout();
         return redirect()->route('public.login');
     }
 
-    public function getActivate($userId, $code) {
+    public function getActivate($userId, $code)
+    {
         if ($this->auth->activate($userId, $code)) {
             flash()->success('Account activated you can now login');
             return redirect()->route('public.login');
@@ -98,11 +109,13 @@ class AuthController extends BasePublicController {
         return redirect()->route('public.register');
     }
 
-    public function getReset() {
+    public function getReset()
+    {
         return view('users::reset.begin');
     }
 
-    public function postReset(ResetRequest $request) {
+    public function postReset(ResetRequest $request)
+    {
         try {
             app(UserResetter::class)->startReset($request->all());
         } catch (UserNotFoundException $e) {
@@ -113,14 +126,16 @@ class AuthController extends BasePublicController {
         return redirect()->route('public.reset');
     }
 
-    public function getResetComplete() {
+    public function getResetComplete()
+    {
         return view('users::reset.complete');
     }
 
-    public function postResetComplete($userId, $code, ResetCompleteRequest $request) {
+    public function postResetComplete($userId, $code, ResetCompleteRequest $request)
+    {
         try {
             app(UserResetter::class)->finishReset(
-                    array_merge($request->all(), ['userId' => $userId, 'code' => $code])
+                array_merge($request->all(), ['userId' => $userId, 'code' => $code])
             );
         } catch (UserNotFoundException $e) {
             flash()->error('User no longer exists');
