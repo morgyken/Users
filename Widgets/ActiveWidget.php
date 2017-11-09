@@ -5,13 +5,15 @@ namespace Ignite\Users\Widgets;
 use Ignite\Core\Library\BaseDashboardWidgets;
 use Ignite\Users\Entities\User;
 
-class ActiveWidget extends BaseDashboardWidgets {
+class ActiveWidget extends BaseDashboardWidgets
+{
 
     /**
      * Get the widget name
      * @return string
      */
-    protected function name() {
+    protected function name()
+    {
         return 'ActiveUsers';
     }
 
@@ -19,23 +21,26 @@ class ActiveWidget extends BaseDashboardWidgets {
      * Get the widget view
      * @return string
      */
-    protected function view() {
+    protected function view()
+    {
         return 'users::widgets.active';
     }
 
     /**
      * Get the widget data to send to the view
-     * @return string
+     * @return array
      */
-    protected function data() {
-        return ['active' => User::all()->count()];
+    protected function data()
+    {
+        return ['active' => User::count()];
     }
 
     /**
      * Get the widget type
      * @return string
      */
-    protected function options() {
+    protected function options()
+    {
         return [
             'width' => '2',
             'height' => '2',

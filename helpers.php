@@ -23,8 +23,10 @@ function users_in($roles)
     return Sentinel::whereHas('roles', function ($query) use ($roles) {
         if (is_array($roles)) {
             $query->whereIn('id', $roles);
-        } else {
+        } else if (is_int($roles)) {
             $query->where('id', $roles);
+        } else {
+            $query->where('slug', $roles);
         }
     })->with('profile')->get();
 }
