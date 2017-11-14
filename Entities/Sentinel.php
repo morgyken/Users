@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Config;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property int|null $employee_id
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Activations\EloquentActivation[] $activations
  * @property-read mixed $gravatar
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cartalyst\Sentinel\Persistences\EloquentPersistence[] $persistences
@@ -40,6 +41,7 @@ use Illuminate\Support\Facades\Config;
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereEmployeeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel whereLastLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\Sentinel wherePassword($value)
@@ -50,11 +52,6 @@ use Illuminate\Support\Facades\Config;
  * @mixin \Eloquent
  */
 class Sentinel extends EloquentUser implements UserInterface {
-
-    /**
-     * @var string The primary key
-     */
-    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.

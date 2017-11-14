@@ -19,6 +19,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property int|null $employee_id
  * @property-read mixed $admin
  * @property-read mixed $ex
  * @property-read mixed $gravator
@@ -28,6 +29,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereEmail($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereEmployeeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User whereLastLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Ignite\Users\Entities\User wherePassword($value)
@@ -99,11 +101,6 @@ class User extends Authenticatable {
         }
 
         return $is_ex;
-    }
-
-    public function employee()
-    {
-        return $this->belongsTo(Employee::class, 'employee_id');
     }
 
 }
