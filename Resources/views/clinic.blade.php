@@ -9,7 +9,6 @@ $clinic = get_clinics();
 //dd(Auth::user()->admin);
 getUserClininics();
 ?>
-        <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -64,7 +63,7 @@ getUserClininics();
                         <?php endforeach; ?>
                     </select>
                     <div class="input-group-btn">
-                        <button type="submit" class="btn">
+                        <button type="submit" class="btn" autofocus>
                             Go
                         </button>
                     </div>
