@@ -238,4 +238,18 @@ class SentinelUserRepository implements UserRepository {
         }
     }
 
+    /*
+    * Get the system users by a given role
+    */ 
+    public function getUsersByRole($slug)
+    {
+        $users = $this->all()->load(['roles', 'profile']);
+
+        return $users->filter(function($user) use($slug){
+            
+            return $user->roles->pluck('slug')->search($slug)  != false;
+
+        });
+    }  
+
 }

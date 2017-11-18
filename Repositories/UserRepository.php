@@ -87,4 +87,6 @@ interface UserRepository {
      * @return mixed
      */
     public function findByCredentials(array $credentials);
+
+    public function getUsersByRole($role);
 }

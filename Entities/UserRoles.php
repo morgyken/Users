@@ -23,6 +23,7 @@ class UserRoles extends Model {
 
     protected $fillable = [];
     public $table = 'role_users';
+    protected $with = ['Roles'];
 
     public function Users() {
         return $this->belongsTo(User::class, 'id', 'user_id');
